@@ -1,13 +1,14 @@
 import { formatDate } from "@/constants";
 import { News } from "@/types";
-import Image from "next/image";
+// import Image from "next/image";
 import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {
   news: News;
+  category: string;
 }
 
-export default function NewsCardXl({ news }: NewsCardProps) {
+export default function NewsCardXl({ news, category }: NewsCardProps) {
   return (
     <a href="#" className="flex group">
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
@@ -32,7 +33,7 @@ export default function NewsCardXl({ news }: NewsCardProps) {
       </div>
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center">
         <p className="font-extrabold uppercase text-xs lg:text-sm xs:mt-4 lg:mt-2 mb-1 lg:mb-0">
-          Programming{" "}
+          {category}{" "}
           <span className="font-medium lowercase">
             / {formatDate(news.publishedAt)}
           </span>

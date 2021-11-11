@@ -5,9 +5,10 @@ import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {
   news: News;
+  category: string;
 }
 
-export default function NewsCard2xl({ news }: NewsCardProps) {
+export default function NewsCard2xl({ news, category }: NewsCardProps) {
   return (
     <a
       href="#"
@@ -33,7 +34,7 @@ export default function NewsCard2xl({ news }: NewsCardProps) {
       </button>
       <div className="absolute left-0 bottom-0 p-5 bg-gradient-to-t from-black via-gray-900/75">
         <p className="font-extrabold uppercase text-sm mt-2 text-green-400">
-          Programming{" "}
+          {category}{" "}
           <span className="font-medium lowercase text-white">
             / {formatDate(news.publishedAt)}
           </span>
