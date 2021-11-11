@@ -4,7 +4,7 @@ module.exports = {
   swcMinify: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["koran-online.vercel.app"],
+    domains: ["mvpthemes.com"],
   },
   // async rewrites() {
   //   return [

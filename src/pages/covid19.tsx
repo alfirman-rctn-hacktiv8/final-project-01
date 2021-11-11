@@ -2,7 +2,7 @@ import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
 
-const Home = () => {
+const Covid19 = () => {
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row md:flex-col-reverse lg:flex-row sm:space-x-4 md:space-x-0 lg:space-x-6">
@@ -31,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Covid19;
