@@ -1,8 +1,13 @@
+import { ReactNode } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import HotNews from "./HotNews";
 
-export default function Layout({ children }) {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
   return (
     <div className="text-gray-700 roboto min-h-screen">
       <Header />
