@@ -1,4 +1,4 @@
-import { formatDate } from "@/constants";
+import formatDate from "@/utils/formatDate";
 import { News } from "@/types";
 // import Image from "next/image";
 import { BookmarkIcon } from "./icon";
@@ -11,7 +11,7 @@ interface NewsCardProps {
 export default function NewsCardLg({ news, category }: NewsCardProps) {
   return (
     <a href="#" className="group block">
-      <div className="relative bg-black h-[120px] xs:h-[155px]">
+      <div className="relative bg-black h-[120px] xs:h-[155px] overflow-hidden">
         {/* <Image
           alt="random-pic"
           layout="fill"
@@ -20,8 +20,8 @@ export default function NewsCardLg({ news, category }: NewsCardProps) {
           className="group-hover:opacity-80 duration-300"
         /> */}
         <img
-          src={news.urlToImage}
-          alt={news.urlToImage}
+          src={news?.urlToImage || ""}
+          alt={news?.urlToImage.slice(0, 30)}
           className="h-full w-full object-cover group-hover:opacity-80 duration-300"
         />
         <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">

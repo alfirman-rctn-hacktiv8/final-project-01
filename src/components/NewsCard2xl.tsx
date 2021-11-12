@@ -1,4 +1,4 @@
-import { formatDate } from "@/constants";
+import formatDate from "@/utils/formatDate";
 import { News } from "@/types";
 // import Image from "next/image";
 import { BookmarkIcon } from "./icon";
@@ -22,8 +22,8 @@ export default function NewsCard2xl({ news, category }: NewsCardProps) {
         className="group-hover:opacity-80 duration-300"
       /> */}
       <img
-        src={news.urlToImage}
-        alt={news.urlToImage}
+        src={news?.urlToImage || ""}
+        alt={news?.urlToImage.slice(0, 30)}
         className="h-full w-full object-cover group-hover:opacity-80 duration-300"
       />
       <button className="absolute top-2 right-2 h-12 w-12 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">

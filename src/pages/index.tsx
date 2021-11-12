@@ -2,8 +2,8 @@ import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
 import { GetServerSideProps } from "next";
-import { API_URL } from "@/constants";
 import { Articles } from "@/types";
+import newsAPI from "@/constants/newsAPI";
 
 interface HomeProps {
   articles: Articles;
@@ -41,8 +41,9 @@ const Home = ({ articles }: HomeProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await fetch(
-      API_URL({ payload: "top-headlines", country: "id" })
+      newsAPI().everything({ q: "indonesia", language: "id" })
     );
+
     const { articles } = await res.json();
 
     return { props: { articles } };
