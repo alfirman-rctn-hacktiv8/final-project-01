@@ -20,19 +20,27 @@ const Home = ({ articles }: HomeProps) => {
             </span>
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
-            {articles.slice(1, 3).map((news, i) => (
-              <NewsCardLg key={i} category="Indonesia" news={news} />
-            ))}
+            {articles.length > 1 &&
+              articles
+                .slice(1, 3)
+                .map((news, i) => (
+                  <NewsCardLg key={i} category="Indonesia" news={news} />
+                ))}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
-          <NewsCard2xl category="Indonesia" news={articles[0]} />
+          {articles.length && (
+            <NewsCard2xl category="Indonesia" news={articles[0]} />
+          )}
         </div>
       </div>
       <div className="mt-7 space-y-6">
-        {articles.slice(3).map((news, i) => (
-          <NewsCardXl key={i} category="Indonesia" news={news} />
-        ))}
+        {articles.length > 3 &&
+          articles
+            .slice(3)
+            .map((news, i) => (
+              <NewsCardXl key={i} category="Indonesia" news={news} />
+            ))}
       </div>
     </>
   );
