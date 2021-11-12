@@ -7,7 +7,7 @@ import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
 
-interface Covid19Props {
+interface PoliticsProps {
   articles: Articles;
   hotNews: {
     latest: Articles;
@@ -16,7 +16,7 @@ interface Covid19Props {
   };
 }
 
-const Covid19 = ({ articles, hotNews }: Covid19Props) => {
+const Politics = ({ articles, hotNews }: PoliticsProps) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Covid19 = ({ articles, hotNews }: Covid19Props) => {
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    hotNewsDispatch({ type: "SET_CATEGORY", payload: "Covid19" });
+    hotNewsDispatch({ type: "SET_CATEGORY", payload: "Politics" });
   }, []);
 
   return (
@@ -33,7 +33,7 @@ const Covid19 = ({ articles, hotNews }: Covid19Props) => {
         <div className="sm:w-1/3 md:w-auto lg:flex-1 relative mt-5 lg:mt-0">
           <h5 className="flex justify-center absolute top-0 w-full">
             <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold">
-              Covid19
+              Politics
             </span>
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
@@ -41,13 +41,13 @@ const Covid19 = ({ articles, hotNews }: Covid19Props) => {
               articles
                 .slice(1, 3)
                 .map((news, i) => (
-                  <NewsCardLg key={i} category="Covid19" news={news} />
+                  <NewsCardLg key={i} category="Politics" news={news} />
                 ))}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
           {articles.length && (
-            <NewsCard2xl category="Covid19" news={articles[0]} />
+            <NewsCard2xl category="Politics" news={articles[0]} />
           )}
         </div>
       </div>
@@ -56,7 +56,7 @@ const Covid19 = ({ articles, hotNews }: Covid19Props) => {
           articles
             .slice(3)
             .map((news, i) => (
-              <NewsCardXl key={i} category="Covid19" news={news} />
+              <NewsCardXl key={i} category="Politics" news={news} />
             ))}
       </div>
     </>
@@ -67,26 +67,26 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const resData = await fetch(
       newsAPI().everything({
-        q: "Covid19",
-        // qlnTitle: "Covid19",
+        q: "Politik",
+        // qlnTitle: "Politics",
         language: "id",
       })
     );
     const resLatest = await fetch(
       newsAPI().everything({
-        q: "Covid19",
+        q: "Politics",
         sortBy: "publishedAt",
       })
     );
     const resPopular = await fetch(
       newsAPI().everything({
-        q: "Covid19",
+        q: "Politics",
         sortBy: "popularity",
       })
     );
     const resRelevant = await fetch(
       newsAPI().everything({
-        q: "Covid19",
+        q: "Politics",
         sortBy: "relevancy",
       })
     );
@@ -120,4 +120,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-export default Covid19;
+export default Politics;

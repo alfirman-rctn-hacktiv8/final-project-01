@@ -42,9 +42,7 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-      <h4 className="bg-black py-3 w-full text-center text-white">
-        copyright
-      </h4>
+      <h4 className="bg-black py-3 w-full text-center text-white">copyright</h4>
     </footer>
   );
 }
@@ -107,15 +105,15 @@ const navs = [
   },
   {
     text: "entertainment",
-    link: "#",
+    link: "/entertainment",
   },
   {
     text: "politics",
-    link: "#",
+    link: "/politics",
   },
   {
     text: "tech",
-    link: "#",
+    link: "/tech",
   },
   {
     text: "saved",

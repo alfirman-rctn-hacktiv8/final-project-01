@@ -50,15 +50,15 @@ const navs = [
   },
   {
     text: "entertainment",
-    link: "#",
+    link: "/entertainment",
   },
   {
     text: "politics",
-    link: "#",
+    link: "/politics",
   },
   {
     text: "tech",
-    link: "#",
+    link: "/tech",
   },
   {
     text: "saved",

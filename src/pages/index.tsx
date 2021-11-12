@@ -65,7 +65,11 @@ const Home = ({ articles, hotNews }: HomeProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const resData = await fetch(newsAPI().topHeadlines({ country: "id" }));
+    const resData = await fetch(
+      newsAPI().topHeadlines({
+        country: "id",
+      })
+    );
     const resLatest = await fetch(
       newsAPI().everything({
         q: "indonesia",
@@ -90,29 +94,27 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const relevant = await resRelevant.json();
     const data = await resData.json();
 
-    if (data.status === "error")
-      return {
-        props: {
-          articles: [],
-          hotNews: {
-            latest: [],
-            popular: [],
-            relevant: [],
-          },
-        },
-      };
-    return {
-      props: {
-        articles: data.articles,
-        hotNews: {
-          latest: latest.articles,
-          popular: popular.articles,
-          relevant: relevant.articles,
-        },
+    const props = {
+      articles: data?.articles || [],
+      hotNews: {
+        latest: latest?.articles || [],
+        popular: popular?.articles || [],
+        relevant: relevant?.articles || [],
       },
     };
+
+    return { props };
   } catch (error) {
-    return { props: { articles: [] } }; // static data
+    return {
+      props: {
+        articles: [],
+        hotNews: {
+          latest: [],
+          popular: [],
+          relevant: [],
+        },
+      },
+    }; // static data
   }
 };
 

@@ -11,7 +11,7 @@ interface NewsCardProps {
 export default function NewsCardSm({ news, category }: NewsCardProps) {
   return (
     <a href="#" className="flex space-x-3 group">
-      <div className="h-24 w-24 relative bg-black">
+      <div className="h-24 w-24 relative bg-black overflow-hidden">
         {/* <Image
           alt="random-pic"
           layout="fill"
@@ -21,7 +21,7 @@ export default function NewsCardSm({ news, category }: NewsCardProps) {
         /> */}
         <img
           src={news?.urlToImage || ""}
-          alt={news?.urlToImage.slice(0, 30)}
+          alt={news?.urlToImage?.slice(0, 30) || ""}
           className="h-full w-full object-cover group-hover:opacity-80 duration-300"
         />
         <button className="absolute top-1 right-1 h-6 w-6 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">
