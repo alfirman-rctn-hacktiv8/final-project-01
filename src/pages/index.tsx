@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { Articles } from "@/types";
-import useNews from "@/hooks/useNews";
+import useHotNews from "@/hooks/useHotNews";
 import newsAPI from "@/constants/newsAPI";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
@@ -17,7 +17,7 @@ interface HomeProps {
 }
 
 const Home = ({ articles, hotNews }: HomeProps) => {
-  const { newsDispatch } = useNews();
+  const { newsDispatch } = useHotNews();
 
   useEffect(() => {
     const { latest, popular, relevant } = hotNews;

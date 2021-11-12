@@ -11,25 +11,13 @@ const initialState = {
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "SET_LATEST":
-      return {
-        ...state,
-        latest: action.payload,
-      };
+      return { ...state, latest: action.payload };
     case "SET_RELEVANT":
-      return {
-        ...state,
-        relevant: action.payload,
-      };
+      return { ...state, relevant: action.payload };
     case "SET_POPULAR":
-      return {
-        ...state,
-        popular: action.payload,
-      };
+      return { ...state, popular: action.payload };
     case "SET_CATEGORY":
-      return {
-        ...state,
-        category: action.payload,
-      };
+      return { ...state, category: action.payload };
     default:
       return state;
   }
@@ -40,7 +28,7 @@ export const newsReducer = () => {
   return [newsState, newsDispatch];
 };
 
-export default function useNews() {
+export default function useHotNews() {
   const { state, dispatch } = useContext(GlobalState);
   return {
     latest: state.newsState.latest,

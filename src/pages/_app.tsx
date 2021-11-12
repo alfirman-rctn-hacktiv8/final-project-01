@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import type { AppProps } from "next/app";
-import { newsReducer } from "@/hooks/useNews";
+import { newsReducer } from "@/hooks/useHotNews";
 import Layout from "@/components/Layout";
 import "tailwindcss/tailwind.css";
 import "@/style/global.css";

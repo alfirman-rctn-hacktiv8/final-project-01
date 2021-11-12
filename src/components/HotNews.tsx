@@ -1,4 +1,4 @@
-import useNews from "@/hooks/useNews";
+import useHotNews from "@/hooks/useHotNews";
 import { News } from "@/types";
 import { useState } from "react";
 import NewsCardSm from "./NewsCardSm";
@@ -6,7 +6,7 @@ import NewsCardSm from "./NewsCardSm";
 type IActiveTab = "latest" | "popular" | "relevant";
 
 export default function HotNews() {
-  const hotNews = useNews();
+  const hotNews = useHotNews();
   const [activeTab, setActiveTab] = useState<IActiveTab>("latest");
   return (
     <div className="sticky top-16">
