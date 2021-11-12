@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { Articles } from "@/types";
 import newsAPI from "@/constants/newsAPI";
 import useHotNews from "@/hooks/useHotNews";
@@ -16,7 +16,7 @@ interface ProgrammingProps {
   };
 }
 
-const Programming = ({ articles, hotNews }: ProgrammingProps) => {
+const Programming: NextPage<ProgrammingProps> = ({ articles, hotNews }) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { Articles } from "@/types";
 import newsAPI from "@/constants/newsAPI";
 import useHotNews from "@/hooks/useHotNews";
@@ -16,7 +16,7 @@ interface EntertainmentProps {
   };
 }
 
-const Entertainment = ({ articles, hotNews }: EntertainmentProps) => {
+const Entertainment: NextPage<EntertainmentProps> = ({ articles, hotNews }) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "@/components/icon";
+import { GetServerSideProps } from "next";
 
 export default function NewsDetail() {
   return (

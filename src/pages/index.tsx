@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { Articles } from "@/types";
 import useHotNews from "@/hooks/useHotNews";
 import newsAPI from "@/constants/newsAPI";
@@ -16,7 +16,7 @@ interface HomeProps {
   };
 }
 
-const Home = ({ articles, hotNews }: HomeProps) => {
+const Home: NextPage<HomeProps> = ({ articles, hotNews }) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
