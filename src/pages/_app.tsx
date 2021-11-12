@@ -1,13 +1,29 @@
+import { createContext } from "react";
 import type { AppProps } from "next/app";
+import { newsReducer } from "@/hooks/useNews";
 import Layout from "@/components/Layout";
 import "tailwindcss/tailwind.css";
 import "@/style/global.css";
 
+export const GlobalState = createContext<any>({});
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const [newsState, newsDispatch] = newsReducer();
+
+  const state = {
+    newsState,
+  };
+
+  const dispatch = {
+    newsDispatch,
+  };
+
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <GlobalState.Provider value={{ state, dispatch }}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </GlobalState.Provider>
   );
 }
 

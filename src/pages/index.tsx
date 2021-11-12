@@ -1,15 +1,32 @@
+import { useEffect } from "react";
+import { GetServerSideProps } from "next";
+import { Articles } from "@/types";
+import useNews from "@/hooks/useNews";
+import newsAPI from "@/constants/newsAPI";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import { GetServerSideProps } from "next";
-import { Articles } from "@/types";
-import newsAPI from "@/constants/newsAPI";
 
 interface HomeProps {
   articles: Articles;
+  hotNews: {
+    latest: Articles;
+    popular: Articles;
+    relevant: Articles;
+  };
 }
 
-const Home = ({ articles }: HomeProps) => {
+const Home = ({ articles, hotNews }: HomeProps) => {
+  const { newsDispatch } = useNews();
+
+  useEffect(() => {
+    const { latest, popular, relevant } = hotNews;
+    newsDispatch({ type: "SET_LATEST", payload: latest });
+    newsDispatch({ type: "SET_RELEVANT", payload: relevant });
+    newsDispatch({ type: "SET_POPULAR", payload: popular });
+    newsDispatch({ type: "SET_CATEGORY", payload: "Indonesia" });
+  }, []);
+
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row md:flex-col-reverse lg:flex-row sm:space-x-4 md:space-x-0 lg:space-x-6">
@@ -48,13 +65,41 @@ const Home = ({ articles }: HomeProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const res = await fetch(
-      newsAPI().everything({ q: "indonesia", language: "id" })
+    const resData = await fetch(newsAPI().topHeadlines({ country: "id" }));
+    const resLatest = await fetch(
+      newsAPI().everything({
+        q: "indonesia",
+        sortBy: "publishedAt",
+      })
+    );
+    const resPopular = await fetch(
+      newsAPI().everything({
+        q: "indonesia",
+        sortBy: "popularity",
+      })
+    );
+    const resRelevant = await fetch(
+      newsAPI().everything({
+        q: "indonesia",
+        sortBy: "relevancy",
+      })
     );
 
-    const { articles } = await res.json();
+    const latest = await resLatest.json();
+    const popular = await resPopular.json();
+    const relevant = await resRelevant.json();
+    const data = await resData.json();
 
-    return { props: { articles } };
+    return {
+      props: {
+        articles: data.articles,
+        hotNews: {
+          latest: latest.articles,
+          popular: popular.articles,
+          relevant: relevant.articles,
+        },
+      },
+    };
   } catch (error) {
     return { props: { articles: [] } }; // static data
   }
