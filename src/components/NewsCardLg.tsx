@@ -11,7 +11,15 @@ interface NewsCardProps {
 export default function NewsCardLg({ news, category }: NewsCardProps) {
   return (
     <Link href={`/${news.title}`}>
-      <a className="group block w-full">
+      <a
+        onClick={() => {
+          localStorage.setItem(
+            news.title.split(" ").join("").toLocaleLowerCase(),
+            JSON.stringify(news)
+          );
+        }}
+        className="group block w-full"
+      >
         <div className="relative bg-black h-[120px] xs:h-[155px] overflow-hidden">
           {/* <Image
           alt="random-pic"

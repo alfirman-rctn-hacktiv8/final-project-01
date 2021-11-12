@@ -11,7 +11,15 @@ interface NewsCardProps {
 export default function NewsCard2xl({ news, category }: NewsCardProps) {
   return (
     <Link href={`/${news.title}`}>
-      <a className="h-[480px] xs:h-[600px] relative block group bg-black">
+      <a
+        onClick={() => {
+          localStorage.setItem(
+            news.title.split(" ").join("").toLocaleLowerCase(),
+            JSON.stringify(news)
+          );
+        }}
+        className="h-[480px] xs:h-[600px] relative block group bg-black"
+      >
         {/* <Image
         alt="random-pic"
         layout="fill"

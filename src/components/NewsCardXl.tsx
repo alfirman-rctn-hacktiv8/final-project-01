@@ -11,7 +11,15 @@ interface NewsCardProps {
 export default function NewsCardXl({ news, category }: NewsCardProps) {
   return (
     <Link href={`/${news.title}`}>
-      <a className="flex group border-t border-gray-300 pt-3">
+      <a
+        onClick={() => {
+          localStorage.setItem(
+            news.title.split(" ").join("").toLocaleLowerCase(),
+            JSON.stringify(news)
+          );
+        }}
+        className="flex group border-t border-gray-300 pt-3"
+      >
         <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
           {/* <Image
           alt="random-pic"

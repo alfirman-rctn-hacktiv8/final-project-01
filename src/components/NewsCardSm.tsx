@@ -11,7 +11,15 @@ interface NewsCardProps {
 export default function NewsCardSm({ news, category }: NewsCardProps) {
   return (
     <Link href={`/${news.title}`}>
-      <a className="flex space-x-3 group">
+      <a
+        onClick={() => {
+          localStorage.setItem(
+            news.title.split(" ").join("").toLocaleLowerCase(),
+            JSON.stringify(news)
+          );
+        }}
+        className="flex space-x-3 group"
+      >
         <div className="h-24 w-24 relative bg-black overflow-hidden">
           {/* <Image
           alt="random-pic"
