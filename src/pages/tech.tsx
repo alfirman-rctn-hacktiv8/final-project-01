@@ -66,11 +66,7 @@ const Tech = ({ articles, hotNews }: TechProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const resData = await fetch(
-      newsAPI().everything({
-        q: "Tech",
-        // qlnTitle: "Tech",
-        language: "id",
-      })
+      newsAPI().topHeadlines({ category: "technology", country: "id" })
     );
     const resLatest = await fetch(
       newsAPI().everything({

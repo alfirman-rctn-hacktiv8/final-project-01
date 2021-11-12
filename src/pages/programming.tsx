@@ -95,6 +95,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const relevant = await resRelevant.json();
     const data = await resData.json();
 
+    // console.log(data);
+
     const props = {
       articles: data?.articles || [],
       hotNews: {

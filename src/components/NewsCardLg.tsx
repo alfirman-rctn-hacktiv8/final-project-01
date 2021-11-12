@@ -10,7 +10,7 @@ interface NewsCardProps {
 
 export default function NewsCardLg({ news, category }: NewsCardProps) {
   return (
-    <a href="#" className="group block">
+    <a href="#" className="group block w-full">
       <div className="relative bg-black h-[120px] xs:h-[155px] overflow-hidden">
         {/* <Image
           alt="random-pic"
@@ -21,7 +21,7 @@ export default function NewsCardLg({ news, category }: NewsCardProps) {
         /> */}
         <img
           src={news?.urlToImage || ""}
-          alt={news?.urlToImage.slice(0, 30)}
+          alt={news?.urlToImage?.slice(0, 30) || ""}
           className="h-full w-full object-cover group-hover:opacity-80 duration-300"
         />
         <button className="absolute top-2 right-2 h-8 w-8 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">

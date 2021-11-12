@@ -10,7 +10,7 @@ interface NewsCardProps {
 
 export default function NewsCardXl({ news, category }: NewsCardProps) {
   return (
-    <a href="#" className="flex group">
+    <a href="#" className="flex group border-t border-gray-300 pt-3">
       <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-2/5 md:w-1/2 lg:w-1/3 relative bg-black group">
         {/* <Image
           alt="random-pic"
@@ -31,8 +31,8 @@ export default function NewsCardXl({ news, category }: NewsCardProps) {
           />
         </button>
       </div>
-      <div className="h-[120px] xs:h-[180px] lg:h-[229px] w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify xs:border-t border-gray-300 flex flex-col lg:justify-center">
-        <p className="font-extrabold uppercase text-xs lg:text-sm xs:mt-4 lg:mt-2 mb-1 lg:mb-0">
+      <div className="w-3/5 md:w-1/2 lg:w-2/3 px-4 lg:px-6 text-justify flex flex-col">
+        <p className="font-extrabold uppercase text-xs lg:text-sm mb-1 lg:mb-0">
           {category}{" "}
           <span className="font-medium lowercase">
             / {formatDate(news.publishedAt)}

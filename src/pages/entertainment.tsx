@@ -66,11 +66,7 @@ const Entertainment = ({ articles, hotNews }: EntertainmentProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const resData = await fetch(
-      newsAPI().everything({
-        q: "Entertainment",
-        // qlnTitle: "Entertainment",
-        language: "id",
-      })
+      newsAPI().topHeadlines({ category: "entertainment", country: "id" })
     );
     const resLatest = await fetch(
       newsAPI().everything({

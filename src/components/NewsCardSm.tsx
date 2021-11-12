@@ -32,14 +32,14 @@ export default function NewsCardSm({ news, category }: NewsCardProps) {
         </button>
       </div>
       <div className="w-[calc(100%-6rem)]">
-        <p className="font-extrabold uppercase text-xs lg:text-sm mt-2">
+        <p className="font-extrabold uppercase text-xs lg:text-sm">
           {category}{" "}
           <span className="font-medium lowercase">
             / {formatDate(news.publishedAt)}
           </span>
         </p>
         <h5 className="oswald font-extrabold text-gray-800 text-sm lg:text-base">
-          {news.title.slice(0, 50)}
+          {news.title}
         </h5>
       </div>
     </a>
