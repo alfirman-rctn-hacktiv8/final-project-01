@@ -17,14 +17,14 @@ interface HomeProps {
 }
 
 const Home = ({ articles, hotNews }: HomeProps) => {
-  const { newsDispatch } = useHotNews();
+  const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
     const { latest, popular, relevant } = hotNews;
-    newsDispatch({ type: "SET_LATEST", payload: latest });
-    newsDispatch({ type: "SET_RELEVANT", payload: relevant });
-    newsDispatch({ type: "SET_POPULAR", payload: popular });
-    newsDispatch({ type: "SET_CATEGORY", payload: "Indonesia" });
+    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+    hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
+    hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
+    hotNewsDispatch({ type: "SET_CATEGORY", payload: "Indonesia" });
   }, []);
 
   return (
@@ -90,6 +90,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const relevant = await resRelevant.json();
     const data = await resData.json();
 
+    if (data.status === "error")
+      return {
+        props: {
+          articles: [],
+          hotNews: {
+            latest: [],
+            popular: [],
+            relevant: [],
+          },
+        },
+      };
     return {
       props: {
         articles: data.articles,

@@ -28,7 +28,7 @@ export default function HotNews() {
       <div className="w-full space-y-4 mt-4">
         {hotNews[activeTab] &&
           hotNews[activeTab]
-            .slice(0, 3)
+            .slice(0, 4)
             .map((news: News, i: number) => (
               <NewsCardSm key={i} news={news} category={hotNews.category} />
             ))}

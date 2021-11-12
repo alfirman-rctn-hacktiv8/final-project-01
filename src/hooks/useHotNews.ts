@@ -1,14 +1,35 @@
 import { useContext, useReducer } from "react";
 import { GlobalState } from "@/pages/_app";
+import { Articles } from "@/types";
 
-const initialState = {
+interface InitialState {
+  latest: Articles;
+  relevant: Articles;
+  popular: Articles;
+  category: String;
+}
+
+interface Action {
+  type: "SET_LATEST" | "SET_RELEVANT" | "SET_POPULAR" | "SET_CATEGORY";
+  payload: Articles | string | any;
+}
+
+interface HotNews {
+  latest: Articles;
+  relevant: Articles;
+  popular: Articles;
+  category: String;
+  hotNewsDispatch: InitialState | string | any;
+}
+
+const initialState: InitialState = {
   latest: [],
   relevant: [],
   popular: [],
   category: "",
 };
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: InitialState, action: Action): InitialState => {
   switch (action.type) {
     case "SET_LATEST":
       return { ...state, latest: action.payload };
@@ -23,18 +44,22 @@ const reducer = (state: any, action: any) => {
   }
 };
 
-export const newsReducer = () => {
-  const [newsState, newsDispatch] = useReducer(reducer, initialState);
-  return [newsState, newsDispatch];
+export const hotNewsReducer = () => {
+  const [hotNewsState, hotNewsDispatch] = useReducer<any>(
+    reducer,
+    initialState
+  );
+  return [hotNewsState, hotNewsDispatch];
 };
 
 export default function useHotNews() {
   const { state, dispatch } = useContext(GlobalState);
-  return {
-    latest: state.newsState.latest,
-    popular: state.newsState.popular,
-    relevant: state.newsState.relevant,
-    category: state.newsState.category,
-    newsDispatch: dispatch.newsDispatch,
+  const hotNews: HotNews = {
+    latest: state.hotNewsState.latest,
+    popular: state.hotNewsState.popular,
+    relevant: state.hotNewsState.relevant,
+    category: state.hotNewsState.category,
+    hotNewsDispatch: dispatch.hotNewsDispatch,
   };
+  return hotNews;
 }

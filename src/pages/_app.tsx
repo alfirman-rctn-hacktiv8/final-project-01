@@ -1,21 +1,26 @@
 import { createContext } from "react";
 import type { AppProps } from "next/app";
-import { newsReducer } from "@/hooks/useHotNews";
+import { hotNewsReducer } from "@/hooks/useHotNews";
 import Layout from "@/components/Layout";
 import "tailwindcss/tailwind.css";
 import "@/style/global.css";
 
-export const GlobalState = createContext<any>({});
+interface GlobalState {
+  state: { hotNewsState: {} };
+  dispatch: { hotNewsDispatch: Function };
+}
+
+export const GlobalState: any = createContext<Partial<GlobalState>>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [newsState, newsDispatch] = newsReducer();
+  const [hotNewsState, hotNewsDispatch] = hotNewsReducer();
 
   const state = {
-    newsState,
+    hotNewsState,
   };
 
   const dispatch = {
-    newsDispatch,
+    hotNewsDispatch,
   };
 
   return (
