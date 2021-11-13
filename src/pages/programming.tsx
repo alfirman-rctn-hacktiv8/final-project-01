@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const resData = await fetch(
       newsAPI().everything({
         q: "programming",
-        qlnTitle: "programming",
+        qInTitle: "programming",
       })
     );
     const resLatest = await fetch(
