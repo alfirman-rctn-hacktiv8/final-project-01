@@ -1,6 +1,6 @@
 import useSavedNews from "@/hooks/useSavedNews";
 import { News } from "@/types";
-import formatDate from "@/utils/formatDate";
+import formatDate from "@/constants/formatDate";
 import Link from "next/link";
 import { MouseEvent } from "react";
 import { BookmarkIcon } from "./icon";

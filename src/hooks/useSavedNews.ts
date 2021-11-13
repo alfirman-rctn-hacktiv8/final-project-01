@@ -5,29 +5,19 @@ import { Articles, News } from "@/types";
 export function useSavedNewsState() {
   const [savedNews, setSavedNews] = useState<Articles>([]);
 
-  const saveNews = (news: News) =>
-    setSavedNews((crr: Articles) => [...crr, news]);
+  const saveNews = (news: News) => setSavedNews((crr: Articles) => [...crr, news]);
 
   const removeNews = (news: News) => {
-    const filtered = savedNews.filter(
-      (crrNews: News) => crrNews.url !== news.url
-    );
-
+    const filtered = savedNews.filter((crrNews: News) => crrNews.url !== news.url);
     setSavedNews(filtered);
   };
 
   const isSaved = (news: News): boolean => {
-    const isExist: boolean = savedNews.some(
-      (crrNews: News) => crrNews.url === news.url
-    );
+    const isExist: boolean = savedNews.some((crrNews: News) => crrNews.url === news.url);
     return isExist;
   };
 
-  const toggleNews = (news: News) => {
-    const isExist: boolean = isSaved(news);
-    if (!isExist) saveNews(news);
-    else removeNews(news);
-  };
+  const toggleNews = (news: News) => !isSaved(news) ? saveNews(news) : removeNews(news);
 
   return [savedNews, toggleNews, isSaved];
 }

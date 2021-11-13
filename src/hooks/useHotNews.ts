@@ -6,7 +6,7 @@ interface InitialState {
   latest: Articles;
   relevant: Articles;
   popular: Articles;
-  category: String;
+  category: string;
 }
 
 interface Action {
@@ -18,16 +18,11 @@ interface HotNews {
   latest: Articles;
   relevant: Articles;
   popular: Articles;
-  category: String;
+  category: string;
   hotNewsDispatch: InitialState | string | any;
 }
 
-const initialState: InitialState = {
-  latest: [],
-  relevant: [],
-  popular: [],
-  category: "",
-};
+const initialState: InitialState = {latest: [],relevant: [],popular: [],category: "",};
 
 const reducer = (state: InitialState, action: Action): InitialState => {
   switch (action.type) {
@@ -45,10 +40,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
 };
 
 export const useHotNewsReducer = () => {
-  const [hotNewsState, hotNewsDispatch] = useReducer<any>(
-    reducer,
-    initialState
-  );
+  const [hotNewsState, hotNewsDispatch] = useReducer<any>(reducer, initialState);
   return [hotNewsState, hotNewsDispatch];
 };
 

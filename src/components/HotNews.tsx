@@ -1,6 +1,6 @@
+import { useState } from "react";
 import useHotNews from "@/hooks/useHotNews";
 import { News } from "@/types";
-import { useState } from "react";
 import NewsCardSm from "./NewsCardSm";
 
 type IActiveTab = "latest" | "popular" | "relevant";

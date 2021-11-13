@@ -1,24 +1,17 @@
-import Image from "next/image";
-import {
-  FacebookIcon,
-  MailIcon,
-  PinterestIcon,
-  TwitterIcon,
-  WhatsappIcon,
-} from "@/components/icon";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { News } from "@/types";
-import formatDate from "@/utils/formatDate";
 import useHotNews from "@/hooks/useHotNews";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import formatDate from "@/constants/formatDate";
+import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
 
 const NewsDetail: NextPage = () => {
   const { category } = useHotNews();
   const router = useRouter();
   const slug: any = router.query.slug;
   const [news, setNews] = useState<News>();
-  
+
   useEffect(() => {
     if (slug) {
       const item: any = localStorage.getItem(
@@ -67,16 +60,8 @@ const NewsDetail: NextPage = () => {
       </div>
       <div className="xs:flex space-x-3 my-5">
         <div className="flex-1">
-          <div className="flex xs:flex-col items-center justify-center space-x-3 xs:space-x-0 xs:space-y-3 xs:sticky top-20">
-            {socialMedias.map((e, i) => (
-              <a
-                href="#"
-                key={i}
-                className={`${e.color} rounded-full h-12 w-12 text-white grid place-items-center`}
-              >
-                {e.icon}
-              </a>
-            ))}
+          <div className="xs:sticky top-20">
+            <SocialMediaDetailNews />
           </div>
         </div>
         <div className="flex-[9] mt-3 xs:mt-0">
@@ -107,31 +92,3 @@ export default NewsDetail;
 
 const paragraph =
   "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNeque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.\n\nAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.\n\nHeading 1\n\nQuis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.\n\nTemporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
-const socialMedias = [
-  {
-    name: "facebook",
-    icon: <FacebookIcon />,
-    color: "bg-[#3b5998]",
-  },
-  {
-    name: "twitter",
-    icon: <TwitterIcon />,
-    color: "bg-[#00acee]",
-  },
-  {
-    name: "pinterest",
-    icon: <PinterestIcon />,
-    color: "bg-[#c8232c]",
-  },
-  {
-    name: "mail",
-    icon: <MailIcon />,
-    color: "bg-gray-400",
-  },
-  {
-    name: "whatsapp",
-    icon: <WhatsappIcon />,
-    color: "bg-[#075E54]",
-  },
-];

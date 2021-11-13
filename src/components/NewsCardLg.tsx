@@ -1,4 +1,4 @@
-import formatDate from "@/utils/formatDate";
+import formatDate from "@/constants/formatDate";
 import { News } from "@/types";
 import Link from "next/link";
 import { BookmarkIcon } from "./icon";

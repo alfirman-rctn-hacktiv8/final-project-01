@@ -45,9 +45,7 @@ const everything = (query: EverythingQueries): string => {
   const qInTitle: string = query.qInTitle ? `&qInTitle=${query.qInTitle}` : "";
   const sources: string = query.sources ? `&sources=${query.sources}` : "";
   const domains: string = query.domains ? `&domains=${query.domains}` : "";
-  const excludeDomains: string = query.excludeDomains
-    ? `&excludeDomains=${query.excludeDomains}`
-    : "";
+  const excludeDomains: string = query.excludeDomains? `&excludeDomains=${query.excludeDomains}`: "";
   const from: string = query.from ? `&from=${query.from}` : "";
   const to: string = query.to ? `&to=${query.to}` : "";
   const language: string = query.language ? `&language=${query.language}` : "";
@@ -55,27 +53,11 @@ const everything = (query: EverythingQueries): string => {
   const pageSize: string = query.pageSize ? `&pageSize=${query.pageSize}` : "";
   const page: string = query.page ? `&page=${query.page}` : "";
 
-  const queryParam: string =
-    q +
-    qInTitle +
-    domains +
-    excludeDomains +
-    sources +
-    page +
-    pageSize +
-    from +
-    to +
-    language +
-    sortBy;
-  // console.log(API_URL("everything", queryParam));
+  const queryParam: string = q + qInTitle + domains + excludeDomains + sources + page + pageSize + from + to + language + sortBy;
+
   return API_URL("everything", queryParam);
 };
 
-const newsAPI = () => {
-  return {
-    topHeadlines,
-    everything,
-  };
-};
+const newsAPI = () => { return {topHeadlines,everything,}; };
 
 export default newsAPI;
