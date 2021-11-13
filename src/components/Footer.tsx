@@ -42,7 +42,17 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-      <h4 className="bg-black py-3 w-full text-center text-white">copyright</h4>
+      <h4 className="bg-black py-3 w-full text-center text-white font-medium">
+        Developed by{" "}
+        <a
+          href="https://alfirman-pahlepi.vercel.app/"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          Alfirman Ejha Pahlepi
+        </a>
+      </h4>
     </footer>
   );
 }
