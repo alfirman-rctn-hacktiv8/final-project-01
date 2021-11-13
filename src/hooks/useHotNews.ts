@@ -6,25 +6,18 @@ interface InitialState {
   latest: Articles;
   relevant: Articles;
   popular: Articles;
-  category: string;
-}
-
-interface Action {
-  type: "SET_LATEST" | "SET_RELEVANT" | "SET_POPULAR" | "SET_CATEGORY";
-  payload: Articles | string | any;
 }
 
 interface HotNews {
   latest: Articles;
   relevant: Articles;
   popular: Articles;
-  category: string;
-  hotNewsDispatch: InitialState | string | any;
+  hotNewsDispatch: any;
 }
 
-const initialState: InitialState = {latest: [],relevant: [],popular: [],category: "",};
+const initialState: InitialState = { latest: [], relevant: [], popular: [] };
 
-const reducer = (state: InitialState, action: Action): InitialState => {
+const reducer = (state: InitialState, action: any): InitialState => {
   switch (action.type) {
     case "SET_LATEST":
       return { ...state, latest: action.payload };
@@ -32,15 +25,13 @@ const reducer = (state: InitialState, action: Action): InitialState => {
       return { ...state, relevant: action.payload };
     case "SET_POPULAR":
       return { ...state, popular: action.payload };
-    case "SET_CATEGORY":
-      return { ...state, category: action.payload };
     default:
       return state;
   }
 };
 
 export const useHotNewsReducer = () => {
-  const [hotNewsState, hotNewsDispatch] = useReducer<any>(reducer, initialState);
+  const [hotNewsState, hotNewsDispatch] = useReducer(reducer, initialState);
   return [hotNewsState, hotNewsDispatch];
 };
 
@@ -50,7 +41,6 @@ export default function useHotNews() {
     latest: state.hotNewsState.latest,
     popular: state.hotNewsState.popular,
     relevant: state.hotNewsState.relevant,
-    category: state.hotNewsState.category,
     hotNewsDispatch: dispatch.hotNewsDispatch,
   };
   return hotNews;

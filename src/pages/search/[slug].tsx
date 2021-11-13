@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps, NextPage } from "next";
 import { Articles, News } from "@/types";
+import useCategory from "@/hooks/useCategory";
 import useHotNews from "@/hooks/useHotNews";
-import NewsCardXl from "@/components/NewsCardXl";
 import newsAPI from "@/constants/newsAPI";
+import NewsCardXl from "@/components/NewsCardXl";
 
 interface SearchProps {
   msg: string;
@@ -18,6 +19,7 @@ interface SearchProps {
 
 const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
   const { hotNewsDispatch } = useHotNews();
+  const { setCategory } = useCategory();
   const slug: string | any = useRouter().query.slug;
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    hotNewsDispatch({ type: "SET_CATEGORY", payload: slug });
+    setCategory(slug)
   }, []);
 
   return (

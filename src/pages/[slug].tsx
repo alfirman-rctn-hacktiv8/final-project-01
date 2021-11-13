@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { News } from "@/types";
-import useHotNews from "@/hooks/useHotNews";
 import formatDate from "@/constants/formatDate";
 import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
+import useCategory from "@/hooks/useCategory";
 
 const NewsDetail: NextPage = () => {
-  const { category } = useHotNews();
+  const { category } = useCategory();
   const router = useRouter();
   const slug: any = router.query.slug;
   const [news, setNews] = useState<News>();

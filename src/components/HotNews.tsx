@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useCategory from "@/hooks/useCategory";
 import useHotNews from "@/hooks/useHotNews";
 import { News } from "@/types";
 import NewsCardSm from "./NewsCardSm";
@@ -7,6 +8,7 @@ type IActiveTab = "latest" | "popular" | "relevant";
 
 export default function HotNews() {
   const hotNews = useHotNews();
+  const { category } = useCategory();
   const [activeTab, setActiveTab] = useState<IActiveTab>("latest");
   return (
     <div className="sticky top-16">
@@ -30,7 +32,7 @@ export default function HotNews() {
           hotNews[activeTab]
             .slice(0, 4)
             .map((news: News, i: number) => (
-              <NewsCardSm key={i} news={news} category={hotNews.category} />
+              <NewsCardSm key={i} news={news} category={category} />
             ))}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { Articles } from "@/types";
 import newsAPI from "@/constants/newsAPI";
 import useHotNews from "@/hooks/useHotNews";
+import useCategory from "@/hooks/useCategory";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
@@ -20,14 +21,15 @@ interface TechProps {
 
 const Tech: NextPage<TechProps> = ({ articles, hotNews, msg }) => {
   const { hotNewsDispatch } = useHotNews();
+  const { setCategory } = useCategory();
 
   useEffect(() => {
     if (msg) alert(msg);
     const { latest, popular, relevant } = hotNews;
-    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    hotNewsDispatch({ type: "SET_CATEGORY", payload: "Tech" });
+    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+    setCategory("Tech")
   }, []);
 
   return (

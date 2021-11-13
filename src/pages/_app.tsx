@@ -4,6 +4,7 @@ import { Articles } from "@/types";
 import { useLoadingState } from "@/hooks/useLoading";
 import { useSavedNewsState } from "@/hooks/useSavedNews";
 import { useHotNewsReducer } from "@/hooks/useHotNews";
+import { useCategoryState } from "@/hooks/useCategory";
 import Loading from "@/components/Loading";
 import Layout from "@/components/Layout";
 import "tailwindcss/tailwind.css";
@@ -29,10 +30,11 @@ export const GlobalState: any = createContext<Partial<GlobalState>>({});
 function MyApp({ Component, pageProps }: AppProps) {
   const [hotNewsState, hotNewsDispatch] = useHotNewsReducer();
   const [savedNews, toggleNews, isSaved] = useSavedNewsState();
+  const [category, setCategory] = useCategoryState();
   const [isLoading, setLoading] = useLoadingState();
 
-  const state = { hotNewsState, savedNews, isSaved, isLoading };
-  const dispatch = { hotNewsDispatch, setLoading, toggleNews };
+  const state = { hotNewsState, savedNews, isSaved, isLoading, category };
+  const dispatch = { hotNewsDispatch, setLoading, toggleNews, setCategory };
 
   return (
     <GlobalState.Provider value={{ state, dispatch }}>
