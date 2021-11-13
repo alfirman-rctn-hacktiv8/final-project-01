@@ -1,7 +1,17 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { FormEvent, useState } from "react";
 import { MenuIcon, SearchIcon } from "./icon";
 
 export default function Navigation() {
+  const { push } = useRouter();
+  const [input, setInput] = useState<string>("");
+
+  const search = (e: FormEvent) => {
+    e.preventDefault();
+    push(`/search/${input}`);
+  };
+
   return (
     <nav className="bg-white sticky top-0 z-50 shadow-lg py-2 lg:py-0">
       <div className="w-11/12 mx-auto flex items-center">
@@ -20,15 +30,17 @@ export default function Navigation() {
           ))}
         </ul>
         <div className="flex-1 h-full flex items-center justify-end">
-          <div className="inline-block relative">
+          <form onSubmit={(e) => search(e)} className="inline-block relative">
             <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="search"
               className="border rounded-xl px-3 w-40"
             />
             <div className="absolute right-2 top-0 h-full flex items-center">
               <SearchIcon />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </nav>

@@ -9,7 +9,7 @@ interface TopHeadlinesQueries {
 
 interface EverythingQueries {
   q: string;
-  qlnTitle?: string;
+  qInTitle?: string;
   sources?: string;
   domains?: string;
   excludeDomains?: string;
@@ -42,7 +42,7 @@ const topHeadlines = (query: TopHeadlinesQueries): string => {
 
 const everything = (query: EverythingQueries): string => {
   const q: string = query.q ? `&q=${query.q}` : "";
-  const qlnTitle: string = query.qlnTitle ? `&qlnTitle=${query.qlnTitle}` : "";
+  const qInTitle: string = query.qInTitle ? `&qInTitle=${query.qInTitle}` : "";
   const sources: string = query.sources ? `&sources=${query.sources}` : "";
   const domains: string = query.domains ? `&domains=${query.domains}` : "";
   const excludeDomains: string = query.excludeDomains
@@ -57,7 +57,7 @@ const everything = (query: EverythingQueries): string => {
 
   const queryParam: string =
     q +
-    qlnTitle +
+    qInTitle +
     domains +
     excludeDomains +
     sources +
