@@ -1,4 +1,9 @@
-export default function Bookmark({ color, size }) {
+interface BookMarkProps {
+  color: string;
+  size: string;
+}
+
+export default function Bookmark({ color, size }: BookMarkProps) {
   return (
     <svg
       aria-hidden="true"
