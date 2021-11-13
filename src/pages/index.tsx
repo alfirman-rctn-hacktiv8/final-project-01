@@ -6,8 +6,10 @@ import newsAPI from "@/constants/newsAPI";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
+import data from "@/data/indonesia.json";
 
 interface HomeProps {
+  msg?: string;
   articles: Articles;
   hotNews: {
     latest: Articles;
@@ -16,10 +18,11 @@ interface HomeProps {
   };
 }
 
-const Home: NextPage<HomeProps> = ({ articles, hotNews }) => {
+const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
+    if (msg) alert(msg);
     const { latest, popular, relevant } = hotNews;
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
@@ -107,11 +110,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
   } catch (error) {
     return {
       props: {
-        articles: [],
+        msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
+        articles: data.data,
         hotNews: {
-          latest: [],
-          popular: [],
-          relevant: [],
+          latest: data.latest,
+          popular: data.popular,
+          relevant: data.relevant,
         },
       },
     }; // static data

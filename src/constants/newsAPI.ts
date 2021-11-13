@@ -24,8 +24,11 @@ interface EverythingQueries {
 const baseURL: string = "newsapi.org";
 const version: string = "v2";
 
-const API_URL = (payload: string, queryParam: string): string =>
-  `https://${baseURL}/${version}/${payload}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}${queryParam}`;
+const API_URL = (payload: string, queryParam: string): string =>{
+  const apiUrl:string=`https://${baseURL}/${version}/${payload}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}${queryParam}`;
+  console.log(apiUrl);
+  return apiUrl
+}
 
 const topHeadlines = (query: TopHeadlinesQueries): string => {
   const q: string = query.q ? `&q=${query.q}` : "";

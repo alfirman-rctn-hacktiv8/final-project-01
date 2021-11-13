@@ -7,6 +7,7 @@ import NewsCardXl from "@/components/NewsCardXl";
 import newsAPI from "@/constants/newsAPI";
 
 interface SearchProps {
+  msg: string;
   articles: Articles;
   hotNews: {
     latest: Articles;
@@ -15,11 +16,12 @@ interface SearchProps {
   };
 }
 
-const Search: NextPage<SearchProps> = ({ articles, hotNews }) => {
+const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
   const { hotNewsDispatch } = useHotNews();
   const slug: string | any = useRouter().query.slug;
 
   useEffect(() => {
+    if (msg) alert(msg);
     const { latest, popular, relevant } = hotNews;
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
@@ -82,6 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } catch (error) {
     return {
       props: {
+        msg: "data not found",
         articles: [],
         hotNews: {
           latest: [],

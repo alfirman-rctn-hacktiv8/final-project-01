@@ -1,0 +1,300 @@
+{
+  "data": [
+    {
+      "source": { "id": "the-verge", "name": "The Verge" },
+      "author": "Ashley Carman",
+      "title": "Amazon is building a Clubhouse competitor that turns hosts into DJs",
+      "description": "Amazon is working on a new live audio app, internally called Project Mic. The app will allow hosts and listeners to interact, and show hosts can build programming around music.",
+      "url": "https://www.theverge.com/2021/10/26/22744585/amazon-project-mic-launch-live-audio-app",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/bJHLWH-k-S9cXaT5jWBHiRZhUM4=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/22954158/acastro_211024_1777_amazonMusic_0001.jpg",
+      "publishedAt": "2021-10-26T12:30:00Z",
+      "content": "A new app is in the works Illustration by Alex Castro Amazon is next on the list of companies getting into the live audio game. The company is building a new app, codenamed Project Mic, that gives … [+2808 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Entrepreneur Store",
+      "title": "Learn Today's Most Popular Programming Language",
+      "description": "Become a Python programmer and see how it can help your business.",
+      "url": "https://www.entrepreneur.com/article/390786",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1634062199-Ent-Python.jpg",
+      "publishedAt": "2021-10-15T16:30:00Z",
+      "content": "Python is the world's most popular programming language and there's a decent chance you've never even heard of it. That's because Python isn't quite a glamour language like JavaScript or C. It's a wo… [+1787 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Entrepreneur Store",
+      "title": "Learn the World's Most Popular Programming Language",
+      "description": "Start your web development journey by learning JavaScript.",
+      "url": "https://www.entrepreneur.com/article/394388",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1635535271-Ent-JavaProgramming.jpg",
+      "publishedAt": "2021-11-04T17:00:00Z",
+      "content": "JavaScript is the most used programming language around the world today. That's not surprising considering that, as of 2019, 95 percent of the world's websites used JavaScript in some form. If you wa… [+1800 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Slashdot.org" },
+      "author": "EditorDavid",
+      "title": "New Study Finds the World's Most Popular Programming Language: JavaScript",
+      "description": "ZDNet reports: JavaScript is now used by more than 16.4 million developers globally, says a survey of more than 19,000 coders — making it the world's most popular programming language 'by a wide margin'. SlashData's 21st State of the Developer Nation Report…",
+      "url": "https://developers.slashdot.org/story/21/11/07/2225252/new-study-finds-the-worlds-most-popular-programming-language-javascript",
+      "urlToImage": "https://a.fsdn.com/sd/topics/programming_64.png",
+      "publishedAt": "2021-11-07T22:59:00Z",
+      "content": "JavaScript is now used by more than 16.4 million developers globally, says a survey of more than 19,000 coders — making it the world's most popular programming language 'by a wide margin'.SlashData's… [+1836 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Entrepreneur en Español",
+      "title": "Python ranks as the most popular programming language for the first time in 20 years",
+      "description": "If you want to start your programming career, Python is now the simplest and most popular option.",
+      "url": "https://www.entrepreneur.com/article/391339",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1634238771-python.jpg",
+      "publishedAt": "2021-10-14T19:13:41Z",
+      "content": "For the first time in 20 years, Python becomes the leader of programming languages, beating C and proclaiming itself as the most popular today. This data comes from the index of the TIOBE programming… [+1076 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Chyelle Dvorak",
+      "title": "A Vertical Computer Monitor Just Might Help You See the Big Picture",
+      "description": "If you're reading on your computer or programming all day, a vertical monitor might actually make more sense for your workflow.",
+      "url": "https://www.entrepreneur.com/article/387405",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1633468668-ent21-octnov-whatsnext-main.jpg",
+      "publishedAt": "2021-10-12T13:00:00Z",
+      "content": "Jason Alvarez-Cohen spends hours a day coding, and this summer was his crunch time. He was redesigning his app Popl, which helps people share their contact information digitally with others. As he sa… [+2589 chars]"
+    },
+    {
+      "source": { "id": "engadget", "name": "Engadget" },
+      "author": "Kris Holt",
+      "title": "Amazon’s Clubhouse competitor may let you DJ your own radio show",
+      "description": "Amazon is said to be working on a live audio app that sounds like it will let anyone be the DJ of their own radio show — including music. Project Mic, as the app is currently known, will reportedly focus on the US market at first, though the launch timeline…",
+      "url": "https://www.engadget.com/amazon-clubhouse-competitor-project-mic-music-dj-142534929.html",
+      "urlToImage": "https://s.yimg.com/os/creatr-images/2019-10/f9c12d10-f1a7-11e9-b6af-9a9954dc8d2d",
+      "publishedAt": "2021-10-26T14:25:34Z",
+      "content": "Amazon is said to be working on a live audio app that sounds like it will let anyone be the DJ of their own radio show including music. Project Mic, as the app is currently known, will reportedly f… [+1708 chars]"
+    },
+    {
+      "source": { "id": null, "name": "New York Times" },
+      "author": "Ephrat Livni and Eric Lipton",
+      "title": "How Venture Capitalists Think Cryptocurrency Will Reshape Commerce",
+      "description": "From banking to gaming, investors are sending billions of dollars to crypto inventors who seek to disrupt industries. Here’s a look at some of those bets.",
+      "url": "https://www.nytimes.com/2021/10/29/us/politics/crypto-currency-venture-capitalists.html",
+      "urlToImage": "https://static01.nyt.com/images/2021/10/29/us/politics/29dc-crypto-explainer-1/29dc-crypto-explainer-1-facebookJumbo.jpg",
+      "publishedAt": "2021-10-29T18:47:20Z",
+      "content": "Crypto finance can sound like science fiction. But this is our reality. Right now, all over the internet, on decentralized finance programs like Uniswap, people are trading, borrowing and lending dig… [+2228 chars]"
+    },
+    {
+      "source": { "id": null, "name": "New York Times" },
+      "author": "Ephrat Livni and Eric Lipton",
+      "title": "How Venture Capitalists Think Crypto Will Reshape Commerce",
+      "description": "From banking to gaming, investors are sending billions of dollars to crypto inventors who seek to disrupt industries. Here’s a look at some of those bets.",
+      "url": "https://www.nytimes.com/2021/10/29/us/politics/crypto-venture-capitalists-commerce.html",
+      "urlToImage": "https://static01.nyt.com/images/2021/10/29/us/politics/29dc-crypto-explainer-1/29dc-crypto-explainer-1-facebookJumbo.jpg",
+      "publishedAt": "2021-10-29T18:47:20Z",
+      "content": "Crypto finance can sound like science fiction. But this is our reality. Right now, all over the internet, on decentralized finance programs like Uniswap, people are trading, borrowing and lending dig… [+2228 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Lambdaland.org" },
+      "author": null,
+      "title": "Models of Programming",
+      "description": "Last week I was studying outside of a lecture hall where someone was teaching an introductory course on computer programming. There was a lot that I overheard that I disagreed with; this essay is an attempt to help me crystallize what exactly I disagreed with.",
+      "url": "https://lambdaland.org/posts/2021-09-25_models_of_programming_draft2/",
+      "urlToImage": null,
+      "publishedAt": "2021-10-27T03:19:53Z",
+      "content": "Last week I was studying outside of a lecture hall where someone was teaching an introductory course on computer programming. There was a lot that I overheard that I disagreed with; this essay is an … [+7418 chars]"
+    },
+    {
+      "source": { "id": "the-next-web", "name": "The Next Web" },
+      "author": "TNW Deals",
+      "title": "Python is now no. 1. This training can make sure you’re a certified expert",
+      "description": "TLDR: The Python Programming and Git Certification Bundle includes beginner and advanced training in how to use Python to code all your biggest programming projects. Well, it finally happened. After years of knocking on the door, Python is now the world’s mos…",
+      "url": "https://thenextweb.com/news/python-is-now-no-1-this-training-can-make-sure-youre-a-certified-expert",
+      "urlToImage": "https://img-cdn.tnwcdn.com/image/tnw-deals?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2021%2F10%2FTNW-python-expert.jpeg&signature=49bcc2e113878c48537f8df61c43d2fd",
+      "publishedAt": "2021-10-17T14:00:54Z",
+      "content": "TLDR: The Python Programming and Git Certification Bundle includes beginner and advanced training in how to use Python to code all your biggest programming projects. Well, it finally happened. After… [+2449 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Archive.org" },
+      "author": null,
+      "title": "Fabrik a Visual Programming Environment",
+      "description": "Comments",
+      "url": "https://web.archive.org/web/20070927190552/http://users.ipa.net/~dwighth/smalltalk/Fabrik/Fabrik.html",
+      "urlToImage": null,
+      "publishedAt": "2021-11-03T13:59:51Z",
+      "content": "The Wayback Machine - https://web.archive.org/web/20070927190552/http://users.ipa.net/~dwighth/smalltalk/Fabrik/Fabrik.html FabrikA Visual Programming EnvironmentDan Ingalls, Scott Wallace, Yu-Ying … [+40640 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Offbyone.us" },
+      "author": "Zeke Nierenberg",
+      "title": "Helping Students with Pair Programming",
+      "description": "Overall, pairing in the classroom is great. But issues come up! Here's how I address them.",
+      "url": "https://offbyone.us/posts/pairing/",
+      "urlToImage": "https://offbyone.us/img/pairing/pairing-cover.png",
+      "publishedAt": "2021-11-06T11:44:08Z",
+      "content": "I wrote an article about how to help a programming student get unstuck, in it, I offered to share my thoughts about how to help pairs of students get unstuck, and this is that article. If you haven't… [+10937 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Mit.edu" },
+      "author": "The MIT Press",
+      "title": "Types and Programming Languages (2002)",
+      "description": "A comprehensive introduction to type systems and programming languages.A type system is a syntactic method for automatically checking the absence of certain erroneous behaviors by classifying program phrases according to the kinds of values they compute. The …",
+      "url": "https://mitpress.mit.edu/books/types-and-programming-languages",
+      "urlToImage": "https://mitpress.mit.edu/sites/default/files/styles/large_book_cover/http/mitp-content-server.mit.edu%3A18180/books/covers/cover/%3Fcollid%3Dbooks_covers_0%26isbn%3D9780262162098%26type%3D.jpg?itok=5z-3s29r",
+      "publishedAt": "2021-11-10T23:40:05Z",
+      "content": "A comprehensive introduction to type systems and programming languages. A type system is a syntactic method for automatically checking the absence of certain erroneous behaviors by classifying progr… [+1143 chars]"
+    },
+    {
+      "source": { "id": "the-next-web", "name": "The Next Web" },
+      "author": "Ivan Mehta",
+      "title": "This new $15 Raspberry Pi is like mana for at-home programming projects",
+      "description": "Raspberry Pi has released a new board called the Zero 2 W — and, excitingly, it costs just $15. It has more than five times more power than its predecessor, thanks to a new quad-core CPU. This makes it ideal for building small media servers, pet monitors, or …",
+      "url": "https://thenextweb.com/news/raspberry-pi-zero-w-2-release-dev-projects",
+      "urlToImage": "https://img-cdn.tnwcdn.com/image/plugged?filter_last=1&fit=1280%2C640&url=https%3A%2F%2Fcdn0.tnwcdn.com%2Fwp-content%2Fblogs.dir%2F1%2Ffiles%2F2021%2F10%2FRaspberry-Pi-Zero-2-W-Lifestyle-1536x1024-1-e1635505672467.jpeg&signature=28dc72ba2a07b7b50557203a5c7e24bc",
+      "publishedAt": "2021-10-29T11:59:22Z",
+      "content": "Ivan covers Big Tech, India, policy, AI, security, platforms, and apps for TNW. That's one heck of a mixed bag. He likes to say 'Bleh.' Ivan covers Big Tech, India, policy, AI, security, platforms, … [+72 chars]"
+    },
+    {
+      "source": { "id": null, "name": "HuffPost" },
+      "author": "Ed Mazza",
+      "title": "What The Hallmark Is Going On? All The Christmas Stuff Is Here Starting Now",
+      "description": "The network launched its 24-hour Christmas programming more than a week before Halloween.",
+      "url": "https://www.huffpost.com/entry/hallmark-channel-2021-movies_n_61726326e4b03072d6f4e42a",
+      "urlToImage": "https://img.huffingtonpost.com/asset/6172706f240000a34450801a.jpg?cache=uoBANR8Krj&ops=1778_1000",
+      "publishedAt": "2021-10-22T09:11:16Z",
+      "content": "Halloween might still be more than a week away, but Hallmark Channel has already decked itself with fake snow and cheesy romance as its Christmas season kicks off on Friday. And its not just a litt… [+1752 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Timescale.com" },
+      "author": "David Kohn",
+      "title": "Function pipelines: Building functional programming into PostgreSQL",
+      "description": "Today we are releasing function pipelines, a new feature that allows you to analyze data by composing multiple functions in SQL - introducing a simpler, cleaner way of expressing complex logic in PostgreSQL.",
+      "url": "https://blog.timescale.com/blog/function-pipelines-building-functional-programming-into-postgresql-using-custom-operators/",
+      "urlToImage": "https://blog.timescale.com/content/images/2021/10/christophe-dion-3KA1M16PuoE-unsplash--1-.jpg",
+      "publishedAt": "2021-10-19T15:29:46Z",
+      "content": "Today, we are announcing function pipelines, a new capability that introduces functional programming concepts inside PostgreSQL (and SQL) using custom operators. Function pipelines radically improve… [+30360 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Github.com" },
+      "author": null,
+      "title": "Kokkos C++ Performance Portability Programming EcoSystem",
+      "description": "Kokkos C++ Performance Portability Programming EcoSystem - Kokkos",
+      "url": "https://github.com/kokkos",
+      "urlToImage": "https://avatars.githubusercontent.com/u/10199860?s=280&v=4",
+      "publishedAt": "2021-10-25T12:32:44Z",
+      "content": "kokkos-kernels Public Kokkos C++ Performance Portability Programming EcoSystem: Math Kernels - Provides BLAS, Sparse BLAS and Graph Kernels"
+    },
+    {
+      "source": { "id": null, "name": "Blogspot.com" },
+      "author": "noreply@blogger.com (Unknown)",
+      "title": "Tales Of The Walking Dead Spinoff Anthology Series Coming To AMC In 2022",
+      "description": "The Tales Of The Walking Dead spinoff anthology series has been greenlit and is coming to AMC in 2022. The network announced the spinoff series was in development back in 2020, but few details have been revealed since. The show was originally touted as featur…",
+      "url": "https://techncruncher.blogspot.com/2021/10/tales-of-walking-dead-spinoff-anthology.html",
+      "urlToImage": "https://lh4.googleusercontent.com/proxy/8OA_0IjRX1fuK_MYKStURhXDIaF5c91XtCz9iv1LWkLIs5iDDh4Cqd7NbP1uvZgs-HXjNnvNiMgLAAgzxw3pETy7QSdBk_ESQ-krFno0Zte5JEfzvDokgEOuVAFlMbo57dJU-LdLAXno=w1200-h630-p-k-no-nu",
+      "publishedAt": "2021-10-12T19:56:00Z",
+      "content": "The Tales Of The Walking Dead spinoff anthology series has been greenlit and is coming to AMC in 2022. The network announced the spinoff series was in development back in 2020, but few details have b… [+2047 chars]"
+    },
+    {
+      "source": { "id": null, "name": "New York Times" },
+      "author": "Morgan Campbell",
+      "title": "Alvarez vs. Plant: How to Watch the Fight on Saturday",
+      "description": "Álvarez and Plant are competing to unify the super-middleweight boxing titles.",
+      "url": "https://www.nytimes.com/2021/11/06/sports/alvarez-plant-boxing.html",
+      "urlToImage": "https://static01.nyt.com/images/2021/11/06/sports/06boxing-watch01/06boxing-watch01-facebookJumbo.jpg",
+      "publishedAt": "2021-11-06T04:01:05Z",
+      "content": "An upset win by Caleb Plant might actually simplify things for Showtime, the pay-per-view platform airing the fight card. Plant might lack Álvarezs star power and built-in audience, but he is signed … [+1590 chars]"
+    }
+  ],
+  "latest": [
+    {
+      "source": { "id": null, "name": "Android Authority" },
+      "author": "Frederick Blichert",
+      "title": "Can Netflix actually stay on top in the streaming wars?",
+      "description": "The streaming wars are well under way. How long can Netflix keep the competition at bay? We break down the future of streaming.",
+      "url": "https://www.androidauthority.com/streaming-wars-3053714/",
+      "urlToImage": "https://cdn57.androidauthority.net/wp-content/uploads/2020/02/Netflix-with-popcorn-stock-photo-1.jpg",
+      "publishedAt": "2021-11-13T19:00:58Z",
+      "content": "The streaming wars have been heating up for years. Initially, it was Netflixs game, as the popular service effectively defined streaming as we now know it before anyone even tried to compete. But as … [+9965 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Slashdot.org" },
+      "author": "Joe_Dragon",
+      "title": "You shall not pinch to zoom: Rittenhouse trial judge disallows basic iPad featur",
+      "description": "When Kenosha County prosecutor Thomas Binger cross-examined murder suspect Kyle Rittenhouse yesterday, he wanted to show Rittenhouse video on an iPad and use a touchscreen feature that phone and tablet owners around the world use every day: pinch-to-zoom.Judg…",
+      "url": "https://slashdot.org/submission/14962113/you-shall-not-pinch-to-zoom-rittenhouse-trial-judge-disallows-basic-ipad-featur",
+      "urlToImage": null,
+      "publishedAt": "2021-11-13T18:58:24Z",
+      "content": "When Kenosha County prosecutor Thomas Binger cross-examined murder suspect Kyle Rittenhouse yesterday, he wanted to show Rittenhouse video on an iPad and use a touchscreen feature that phone and tabl… [+16186 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Audacy.com" },
+      "author": null,
+      "title": "Lindsay Lohan gets festive in first-look for upcoming holiday rom-com on Netflix",
+      "description": "Lindsay Lohan is making a festive return to the small-screen. Netflix released a new first-look at Lohan's upcoming holiday rom-com co-starring Chord Overstreet.",
+      "url": "https://www.audacy.com/music/movies/lindsay-lohan-first-look-for-holiday-rom-com-on-netflix",
+      "urlToImage": "https://images.radio.com/aiu-media/Lihan-4a060c86-31ea-4649-8570-a9dd75492075.png",
+      "publishedAt": "2021-11-13T18:50:23Z",
+      "content": "Lindsay Lohan is gearing up for a festive return to the small-screen. Netflix released a first-look at Lohan’s upcoming holiday rom-com co-starring Chord Overstreet. The streamer shared the photo o… [+1808 chars]"
+    }
+  ],
+  "relevant": [
+    {
+      "source": { "id": "the-verge", "name": "The Verge" },
+      "author": "Ashley Carman",
+      "title": "Amazon is building a Clubhouse competitor that turns hosts into DJs",
+      "description": "Amazon is working on a new live audio app, internally called Project Mic. The app will allow hosts and listeners to interact, and show hosts can build programming around music.",
+      "url": "https://www.theverge.com/2021/10/26/22744585/amazon-project-mic-launch-live-audio-app",
+      "urlToImage": "https://cdn.vox-cdn.com/thumbor/bJHLWH-k-S9cXaT5jWBHiRZhUM4=/0x146:2040x1214/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/22954158/acastro_211024_1777_amazonMusic_0001.jpg",
+      "publishedAt": "2021-10-26T12:30:00Z",
+      "content": "A new app is in the works Illustration by Alex Castro Amazon is next on the list of companies getting into the live audio game. The company is building a new app, codenamed Project Mic, that gives … [+2808 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Entrepreneur Store",
+      "title": "Learn Today's Most Popular Programming Language",
+      "description": "Become a Python programmer and see how it can help your business.",
+      "url": "https://www.entrepreneur.com/article/390786",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1634062199-Ent-Python.jpg",
+      "publishedAt": "2021-10-15T16:30:00Z",
+      "content": "Python is the world's most popular programming language and there's a decent chance you've never even heard of it. That's because Python isn't quite a glamour language like JavaScript or C. It's a wo… [+1787 chars]"
+    },
+    {
+      "source": { "id": null, "name": "Entrepreneur" },
+      "author": "Entrepreneur Store",
+      "title": "Learn the World's Most Popular Programming Language",
+      "description": "Start your web development journey by learning JavaScript.",
+      "url": "https://www.entrepreneur.com/article/394388",
+      "urlToImage": "https://assets.entrepreneur.com/content/3x2/2000/1635535271-Ent-JavaProgramming.jpg",
+      "publishedAt": "2021-11-04T17:00:00Z",
+      "content": "JavaScript is the most used programming language around the world today. That's not surprising considering that, as of 2019, 95 percent of the world's websites used JavaScript in some form. If you wa… [+1800 chars]"
+    }
+  ],
+  "popular": [
+    {
+      "source": { "id": "engadget", "name": "Engadget" },
+      "author": "Kris Holt",
+      "title": "Amazon’s Clubhouse competitor may let you DJ your own radio show",
+      "description": "Amazon is said to be working on a live audio app that sounds like it will let anyone be the DJ of their own radio show — including music. Project Mic, as the app is currently known, will reportedly focus on the US market at first, though the launch timeline…",
+      "url": "https://www.engadget.com/amazon-clubhouse-competitor-project-mic-music-dj-142534929.html",
+      "urlToImage": "https://s.yimg.com/os/creatr-images/2019-10/f9c12d10-f1a7-11e9-b6af-9a9954dc8d2d",
+      "publishedAt": "2021-10-26T14:25:34Z",
+      "content": "Amazon is said to be working on a live audio app that sounds like it will let anyone be the DJ of their own radio show including music. Project Mic, as the app is currently known, will reportedly f… [+1708 chars]"
+    },
+    {
+      "source": { "id": "engadget", "name": "Engadget" },
+      "author": "Daniel Cooper",
+      "title": "Sky Glass is a gilded cage you pay to be locked inside",
+      "description": "Since the 1970s, the story of the television is one of conquest as it swallowed more and more space in our living rooms. Owning a set wasn’t good enough, we needed a VCR, BetaMax or LaserDisc player to lurk on a nearby shelf. A decade later, a console or home…",
+      "url": "https://www.engadget.com/sky-glass-tv-review-103031952.html",
+      "urlToImage": "https://s.yimg.com/os/creatr-uploaded-images/2021-11/72b088a0-4233-11ec-8f7b-203cccbad02a",
+      "publishedAt": "2021-11-12T10:30:31Z",
+      "content": "Since the 1970s, the story of the television is one of conquest as it swallowed more and more space in our living rooms. Owning a set wasnt good enough, we needed a VCR, BetaMax or LaserDisc player t… [+24004 chars]"
+    },
+    {
+      "source": { "id": "wired", "name": "Wired" },
+      "author": "Noam Cohen",
+      "title": "Open Source Doesn't Mean More Software Is Better Software",
+      "description": "The battle between Mastodon and Trump’s Truth Social is a reminder that while the internet has changed, the ideals of free software haven't. That's a problem.",
+      "url": "https://www.wired.com/story/more-software-isnt-better-software/",
+      "urlToImage": "https://media.wired.com/photos/61847d6706899104cfb36c49/191:100/w_1280,c_limit/More-Software-Isn't-Better-Software.jpg",
+      "publishedAt": "2021-11-05T13:00:00Z",
+      "content": "A generation earlier, Microsoft founder Bill Gates offered his own theory about how to create good, useful software, writing a scathing letter to the hobbyists who were sharing his companys BASIC sof… [+4119 chars]"
+    }
+  ]
+}
