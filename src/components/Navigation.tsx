@@ -35,7 +35,7 @@ export default function Navigation() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="search"
-              className="border rounded-xl px-3 w-40"
+              className="border rounded-xl px-3 w-40 text-sm"
             />
             <div className="absolute right-2 top-0 h-full flex items-center">
               <SearchIcon />

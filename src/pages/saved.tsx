@@ -1,4 +1,8 @@
+import useSavedNews from "@/hooks/useSavedNews";
+import { Articles } from "@/types";
+
 const Saved = () => {
+  const savedNews: Articles = useSavedNews().savedNews;
   return (
     <>
       <h1 className="text-3xl font-bold oswald border-green-300 border-b-4 py-4 uppercase text-gray-800">
@@ -15,19 +19,14 @@ const Saved = () => {
               </tr>
             </thead>
             <tbody>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((el) => (
-                <tr key={el} className="odd:bg-gray-100">
-                  <td className="p-3 w-[14rem] ">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
-                  </td>
-                  <td className="p-3 w-[14rem] ">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
-                  </td>
-                  <td className="p-3">
-                    asdsdadasdasdds asdasd asdas asdsa asdasd
-                  </td>
-                </tr>
-              ))}
+              {savedNews.length &&
+                savedNews.map((news, i) => (
+                  <tr key={i} className="odd:bg-gray-100">
+                    <td className="p-3 w-[14rem] ">{news.source.name}</td>
+                    <td className="p-3 w-[14rem] ">{news.title}</td>
+                    <td className="p-3">{news.description}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

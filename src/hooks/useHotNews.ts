@@ -44,7 +44,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
   }
 };
 
-export const hotNewsReducer = () => {
+export const useHotNewsReducer = () => {
   const [hotNewsState, hotNewsDispatch] = useReducer<any>(
     reducer,
     initialState

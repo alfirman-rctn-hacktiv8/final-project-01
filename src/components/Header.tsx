@@ -1,3 +1,4 @@
+import useSavedNews from "@/hooks/useSavedNews";
 import Link from "next/link";
 import {
   BookmarkIcon,
@@ -9,6 +10,7 @@ import {
 import Navigation from "./Navigation";
 
 export default function Header() {
+  const { savedNews } = useSavedNews();
   return (
     <>
       <header className="bg-black text-white">
@@ -33,7 +35,7 @@ export default function Header() {
             <BookmarkIcon />
             <Link href="/saved">
               <a className="h-[22px] w-[22px] text-[10px] font-semibold grid place-items-center bg-gray-700 hover:bg-green-400 duration-300 rounded-full">
-                10
+                {savedNews.length}
               </a>
             </Link>
           </div>

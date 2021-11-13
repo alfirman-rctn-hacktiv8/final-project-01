@@ -2,6 +2,8 @@ import formatDate from "@/utils/formatDate";
 import { News } from "@/types";
 import Link from "next/link";
 import { BookmarkIcon } from "./icon";
+import useSavedNews from "@/hooks/useSavedNews";
+import { MouseEvent } from "react";
 
 interface NewsCardProps {
   news: News;
@@ -9,6 +11,13 @@ interface NewsCardProps {
 }
 
 export default function NewsCard2xl({ news, category }: NewsCardProps) {
+  const { toggleNews, isSaved } = useSavedNews();
+
+  const saveOrRemoveNews = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toggleNews(news);
+  };
+
   return (
     <Link href={`/${news.title}`}>
       <a
@@ -32,9 +41,14 @@ export default function NewsCard2xl({ news, category }: NewsCardProps) {
           alt={news?.urlToImage.slice(0, 30)}
           className="h-full w-full object-cover group-hover:opacity-80 duration-300"
         />
-        <button className="absolute top-2 right-2 h-12 w-12 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center">
+        <button
+          onClick={(e) => saveOrRemoveNews(e)}
+          className="absolute top-2 right-2 h-12 w-12 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center"
+        >
           <BookmarkIcon
-            color="text-yellow-300 hover:text-yellow-400"
+            color={`${
+              isSaved(news) ? "text-yellow-300" : "text-gray-300"
+            }  hover:text-yellow-400`}
             size="h-6 w-6"
           />
         </button>

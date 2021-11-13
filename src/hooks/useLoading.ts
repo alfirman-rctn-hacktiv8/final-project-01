@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { GlobalState } from "@/pages/_app";
 
-export function loadingState(): [boolean, Function] {
+export function useLoadingState(): [boolean, Function] {
   const [isLoading, setLoading] = useState<boolean>(false);
   return [isLoading, setLoading];
 }

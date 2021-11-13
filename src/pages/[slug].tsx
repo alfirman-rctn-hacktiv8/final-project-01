@@ -6,8 +6,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "@/components/icon";
-import { GetServerSideProps, NextPage } from "next";
-import newsAPI from "@/constants/newsAPI";
+import { NextPage } from "next";
 import { News } from "@/types";
 import formatDate from "@/utils/formatDate";
 import useHotNews from "@/hooks/useHotNews";
@@ -19,16 +18,13 @@ const NewsDetail: NextPage = () => {
   const router = useRouter();
   const slug: any = router.query.slug;
   const [news, setNews] = useState<News>();
-
-  // console.log(JSON.parse(localStorage?.getItem(slug.split(" ").join("+"))));
-
+  
   useEffect(() => {
     if (slug) {
       const item: any = localStorage.getItem(
         slug.split(" ").join("").toLowerCase()
       );
       setNews(JSON.parse(item));
-      console.log(item);
     }
   }, [slug]);
   return (
