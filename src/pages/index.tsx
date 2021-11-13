@@ -6,7 +6,7 @@ import newsAPI from "@/constants/newsAPI";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import data from "@/data/indonesia.json";
+import staticData from "@/data/indonesia.json";
 
 interface HomeProps {
   msg?: string;
@@ -97,25 +97,38 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const relevant = await resRelevant.json();
     const data = await resData.json();
 
-    const props = {
-      articles: data?.articles || [],
-      hotNews: {
-        latest: latest?.articles || [],
-        popular: popular?.articles || [],
-        relevant: relevant?.articles || [],
+    if (data.status === "error")
+      return {
+        props: {
+          msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
+          articles: staticData.data,
+          hotNews: {
+            latest: staticData.latest,
+            popular: staticData.popular,
+            relevant: staticData.relevant,
+          },
+        },
+      };
+
+    return {
+      props: {
+        articles: data?.articles || [],
+        hotNews: {
+          latest: latest?.articles || [],
+          popular: popular?.articles || [],
+          relevant: relevant?.articles || [],
+        },
       },
     };
-
-    return { props };
   } catch (error) {
     return {
       props: {
         msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
-        articles: data.data,
+        articles: staticData.data,
         hotNews: {
-          latest: data.latest,
-          popular: data.popular,
-          relevant: data.relevant,
+          latest: staticData.latest,
+          popular: staticData.popular,
+          relevant: staticData.relevant,
         },
       },
     }; // static data

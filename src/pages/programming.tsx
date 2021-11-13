@@ -6,10 +6,10 @@ import useHotNews from "@/hooks/useHotNews";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import data from "@/data/programming.json";
+import staticData from "@/data/programming.json";
 
 interface ProgrammingProps {
-  msg?:string
+  msg?: string;
   articles: Articles;
   hotNews: {
     latest: Articles;
@@ -18,11 +18,15 @@ interface ProgrammingProps {
   };
 }
 
-const Programming: NextPage<ProgrammingProps> = ({ articles, hotNews, msg }) => {
+const Programming: NextPage<ProgrammingProps> = ({
+  articles,
+  hotNews,
+  msg,
+}) => {
   const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
-    if(msg) alert(msg)
+    if (msg) alert(msg);
     const { latest, popular, relevant } = hotNews;
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
@@ -98,27 +102,38 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const relevant = await resRelevant.json();
     const data = await resData.json();
 
-    // console.log(data);
+    if (data.status === "error")
+      return {
+        props: {
+          msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
+          articles: staticData.data,
+          hotNews: {
+            latest: staticData.latest,
+            popular: staticData.popular,
+            relevant: staticData.relevant,
+          },
+        },
+      };
 
-    const props = {
-      articles: data?.articles || [],
-      hotNews: {
-        latest: latest?.articles || [],
-        popular: popular?.articles || [],
-        relevant: relevant?.articles || [],
+    return {
+      props: {
+        articles: data?.articles || [],
+        hotNews: {
+          latest: latest?.articles || [],
+          popular: popular?.articles || [],
+          relevant: relevant?.articles || [],
+        },
       },
     };
-
-    return { props };
   } catch (error) {
     return {
       props: {
         msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
-        articles: data.data,
+        articles: staticData.data,
         hotNews: {
-          latest: data.latest,
-          popular: data.popular,
-          relevant: data.relevant,
+          latest: staticData.latest,
+          popular: staticData.popular,
+          relevant: staticData.relevant,
         },
       },
     }; // static data
