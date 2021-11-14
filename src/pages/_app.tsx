@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import type { AppProps } from "next/app";
 import { Router } from "next/router";
 import NProgress from "nprogress";
@@ -27,7 +27,6 @@ interface GlobalState {
 export const GlobalState: any = createContext<Partial<GlobalState>>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [hotNewsState, hotNewsDispatch] = useHotNewsReducer();
   const [savedNews, toggleNews, isSaved] = useSavedNewsState();
   const [category, setCategory] = useCategoryState();
