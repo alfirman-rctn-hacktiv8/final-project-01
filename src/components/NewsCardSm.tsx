@@ -47,9 +47,7 @@ export default function NewsCardSm({ news }: NewsCardProps) {
             className="absolute top-1 right-1 h-6 w-6 bg-gray-900/30 rounded-full hidden group-hover:grid place-items-center"
           >
             <BookmarkIcon
-              color={`${
-                isSaved(news) ? "text-yellow-300" : "text-gray-300"
-              }  hover:text-yellow-400`}
+              color={isSaved(news) ? "text-yellow-300" : "text-gray-300"}
               size="h-3 w-3"
             />
           </button>
