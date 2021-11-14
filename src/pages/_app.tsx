@@ -37,12 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <GlobalState.Provider value={{ state, dispatch }}>
-      <div
-        className={`${
-          isLoading ? " w-1" : "w-full opacity-0"
-        } absolute top-0 left-0 h-1 bg-white duration-500`}
-      ></div>
-      {/* {isLoading && <Loading />} */}
       <Layout>
         <Component {...pageProps} />
       </Layout>
