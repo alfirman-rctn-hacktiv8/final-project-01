@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { News } from "@/types";
+import useCategory from "@/hooks/useCategory";
 import formatDate from "@/constants/formatDate";
 import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
-import useCategory from "@/hooks/useCategory";
 
 const NewsDetail: NextPage = () => {
   const { category } = useCategory();

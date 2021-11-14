@@ -1,5 +1,6 @@
 import useSavedNews from "@/hooks/useSavedNews";
 import Link from "next/link";
+import { useState } from "react";
 import {
   BookmarkIcon,
   FacebookIcon,
@@ -8,11 +9,14 @@ import {
   YoutubeIcon,
 } from "./icon";
 import Navigation from "./Navigation";
+import SideBar from "./SideBar";
 
 export default function Header() {
   const { savedNews } = useSavedNews();
+  const [isSideBar, setSideBar] = useState<boolean>(false);
   return (
     <>
+      <SideBar isSideBar={isSideBar} setSideBar={setSideBar} />
       <header className="bg-black text-white">
         <div className=" flex py-4 mx-auto px-3 xs:px-0 xs:w-11/12">
           <div className="flex-1 flex items-center space-x-3">
@@ -41,7 +45,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <Navigation />
+      <Navigation setSideBar={setSideBar} />
     </>
   );
 }
