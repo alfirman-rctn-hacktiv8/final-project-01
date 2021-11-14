@@ -46,13 +46,13 @@ const Tech: NextPage<TechProps> = ({ articles, hotNews, msg }) => {
               articles
                 .slice(1, 3)
                 .map((news, i) => (
-                  <NewsCardLg key={i} category="Tech" news={news} />
+                  <NewsCardLg key={i} news={news} />
                 ))}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
           {articles.length && (
-            <NewsCard2xl category="Tech" news={articles[0]} />
+            <NewsCard2xl news={articles[0]} />
           )}
         </div>
       </div>
@@ -61,7 +61,7 @@ const Tech: NextPage<TechProps> = ({ articles, hotNews, msg }) => {
           articles
             .slice(3)
             .map((news, i) => (
-              <NewsCardXl key={i} category="Tech" news={news} />
+              <NewsCardXl key={i} news={news} />
             ))}
       </div>
     </>

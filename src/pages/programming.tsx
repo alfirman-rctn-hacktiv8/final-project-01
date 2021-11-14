@@ -46,13 +46,13 @@ const Programming: NextPage<ProgrammingProps> = ({ articles, hotNews, msg }) => 
               articles
                 .slice(1, 3)
                 .map((news, i) => (
-                  <NewsCardLg key={i} category="Programming" news={news} />
+                  <NewsCardLg key={i} news={news} />
                 ))}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
           {articles.length && (
-            <NewsCard2xl category="Programming" news={articles[0]} />
+            <NewsCard2xl news={articles[0]} />
           )}
         </div>
       </div>
@@ -61,7 +61,7 @@ const Programming: NextPage<ProgrammingProps> = ({ articles, hotNews, msg }) => 
           articles
             .slice(3)
             .map((news, i) => (
-              <NewsCardXl key={i} category="Programming" news={news} />
+              <NewsCardXl key={i} news={news} />
             ))}
       </div>
     </>

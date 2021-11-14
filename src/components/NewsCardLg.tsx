@@ -1,17 +1,18 @@
-import formatDate from "@/constants/formatDate";
-import { News } from "@/types";
-import Link from "next/link";
-import { BookmarkIcon } from "./icon";
-import useSavedNews from "@/hooks/useSavedNews";
 import { MouseEvent } from "react";
+import Link from "next/link";
+import { News } from "@/types";
+import useCategory from "@/hooks/useCategory";
+import formatDate from "@/constants/formatDate";
+import useSavedNews from "@/hooks/useSavedNews";
+import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {
   news: News;
-  category: string;
 }
 
-export default function NewsCardLg({ news, category }: NewsCardProps) {
+export default function NewsCardLg({ news }: NewsCardProps) {
   const { toggleNews, isSaved } = useSavedNews();
+  const { category } = useCategory();
 
   const saveOrRemoveNews = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

@@ -29,7 +29,7 @@ const Covid19: NextPage<Covid19Props> = ({ articles, hotNews, msg }) => {
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
-    setCategory("Covid19")
+    setCategory("Covid19");
   }, []);
 
   return (
@@ -46,13 +46,13 @@ const Covid19: NextPage<Covid19Props> = ({ articles, hotNews, msg }) => {
               articles
                 .slice(1, 3)
                 .map((news, i) => (
-                  <NewsCardLg key={i} category="Covid19" news={news} />
+                  <NewsCardLg key={i} news={news} />
                 ))}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
           {articles.length && (
-            <NewsCard2xl category="Covid19" news={articles[0]} />
+            <NewsCard2xl news={articles[0]} />
           )}
         </div>
       </div>
@@ -61,7 +61,7 @@ const Covid19: NextPage<Covid19Props> = ({ articles, hotNews, msg }) => {
           articles
             .slice(3)
             .map((news, i) => (
-              <NewsCardXl key={i} category="Covid19" news={news} />
+              <NewsCardXl key={i} news={news} />
             ))}
       </div>
     </>
