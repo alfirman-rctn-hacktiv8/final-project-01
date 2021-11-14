@@ -28,13 +28,13 @@ const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    setCategory(slug)
+    setCategory(slug);
   }, []);
 
   return (
     <div className="mt-7 space-y-6">
       {articles.map((news: News, i: number) => (
-        <NewsCardXl key={i} news={news} category={slug || "search"} />
+        <NewsCardXl key={i} news={news} />
       ))}
     </div>
   );
