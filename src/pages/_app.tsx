@@ -7,8 +7,9 @@ import { useSavedNewsState } from "@/lib/useSavedNews";
 import { useHotNewsReducer } from "@/lib/useHotNews";
 import { useCategoryState } from "@/lib/useCategory";
 import Layout from "@/components/Layout";
-import "tailwindcss/tailwind.css";
+import "@/style/global.css";
 import "@/style/nprogress.css";
+import "tailwindcss/tailwind.css";
 
 interface GlobalState {
   state: {
