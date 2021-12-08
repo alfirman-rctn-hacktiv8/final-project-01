@@ -1,4 +1,4 @@
-import useSavedNews from "@/hooks/useSavedNews";
+import useSavedNews from "@/lib/useSavedNews";
 import Link from "next/link";
 import { useState } from "react";
 import {

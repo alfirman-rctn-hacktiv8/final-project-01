@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps, NextPage } from "next";
 import { Articles, News } from "@/types";
-import useCategory from "@/hooks/useCategory";
-import useHotNews from "@/hooks/useHotNews";
+import useCategory from "@/lib/useCategory";
+import useHotNews from "@/lib/useHotNews";
 import newsAPI from "@/constants/newsAPI";
 import NewsCardXl from "@/components/NewsCardXl";
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { News } from "@/types";
-import useCategory from "@/hooks/useCategory";
+import useCategory from "@/lib/useCategory";
 import formatDate from "@/constants/formatDate";
 import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
 

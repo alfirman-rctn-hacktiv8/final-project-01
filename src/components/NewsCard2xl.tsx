@@ -1,8 +1,8 @@
 import { MouseEvent } from "react";
 import Link from "next/link";
 import { News } from "@/types";
-import useCategory from "@/hooks/useCategory";
-import useSavedNews from "@/hooks/useSavedNews";
+import useCategory from "@/lib/useCategory";
+import useSavedNews from "@/lib/useSavedNews";
 import formatDate from "@/constants/formatDate";
 import { BookmarkIcon } from "./icon";
 

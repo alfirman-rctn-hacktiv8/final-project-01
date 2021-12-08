@@ -1,9 +1,9 @@
 import { MouseEvent } from "react";
 import Link from "next/link";
 import { News } from "@/types";
-import useCategory from "@/hooks/useCategory";
+import useCategory from "@/lib/useCategory";
 import formatDate from "@/constants/formatDate";
-import useSavedNews from "@/hooks/useSavedNews";
+import useSavedNews from "@/lib/useSavedNews";
 import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {

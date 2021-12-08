@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { Articles } from "@/types";
 import newsAPI from "@/constants/newsAPI";
-import useHotNews from "@/hooks/useHotNews";
-import useCategory from "@/hooks/useCategory";
+import useHotNews from "@/lib/useHotNews";
+import useCategory from "@/lib/useCategory";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
@@ -45,30 +45,24 @@ const Covid19: NextPage<Covid19Props> = ({ articles, hotNews, msg }) => {
             {articles.length > 1 &&
               articles
                 .slice(1, 3)
-                .map((news, i) => (
-                  <NewsCardLg key={i} news={news} />
-                ))}
+                .map((news, i) => <NewsCardLg key={i} news={news} />)}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
-          {articles.length && (
-            <NewsCard2xl news={articles[0]} />
-          )}
+          {articles.length && <NewsCard2xl news={articles[0]} />}
         </div>
       </div>
       <div className="mt-7 space-y-6">
         {articles.length > 3 &&
           articles
             .slice(3)
-            .map((news, i) => (
-              <NewsCardXl key={i} news={news} />
-            ))}
+            .map((news, i) => <NewsCardXl key={i} news={news} />)}
       </div>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const resData = await fetch(
       newsAPI().everything({
@@ -103,6 +97,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     if (data.status === "error")
       return {
+        revalidate: 86400, // 1 day
         props: {
           msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
           articles: staticData.data,
@@ -115,6 +110,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       };
 
     return {
+      revalidate: 86400, // 1 day
       props: {
         articles: data?.articles || [],
         hotNews: {
@@ -126,6 +122,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   } catch (error) {
     return {
+      revalidate: 86400, // 1 day
       props: {
         msg: "error, API's not working or APi request has reached the limit\nNow you're using static data at november 14 2021",
         articles: staticData.data,

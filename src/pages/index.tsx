@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { Articles } from "@/types";
-import useHotNews from "@/hooks/useHotNews";
+import useHotNews from "@/lib/useHotNews";
 import newsAPI from "@/constants/newsAPI";
-import useCategory from "@/hooks/useCategory";
+import useCategory from "@/lib/useCategory";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
@@ -45,30 +45,24 @@ const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
             {articles.length > 1 &&
               articles
                 .slice(1, 3)
-                .map((news, i) => (
-                  <NewsCardLg key={i} news={news} />
-                ))}
+                .map((news, i) => <NewsCardLg key={i} news={news} />)}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
-          {articles.length && (
-            <NewsCard2xl news={articles[0]} />
-          )}
+          {articles.length && <NewsCard2xl news={articles[0]} />}
         </div>
       </div>
       <div className="mt-7 space-y-6">
         {articles.length > 3 &&
           articles
             .slice(3)
-            .map((news, i) => (
-              <NewsCardXl key={i} news={news} />
-            ))}
+            .map((news, i) => <NewsCardXl key={i} news={news} />)}
       </div>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const resData = await fetch(
       newsAPI().topHeadlines({
@@ -109,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
             popular: staticData.popular,
             relevant: staticData.relevant,
           },
-        },
+        },wrevalidate: 86400, // 1 day
       };
 
     return {
@@ -121,6 +115,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           relevant: relevant?.articles || [],
         },
       },
+      revalidate: 86400, // 1 day
     };
   } catch (error) {
     return {
@@ -133,6 +128,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
           relevant: staticData.relevant,
         },
       },
+      revalidate: 86400, // 1 day
     }; // static data
   }
 };

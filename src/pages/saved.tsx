@@ -1,4 +1,4 @@
-import useSavedNews from "@/hooks/useSavedNews";
+import useSavedNews from "@/lib/useSavedNews";
 import { News } from "@/types";
 
 const Saved = () => {
