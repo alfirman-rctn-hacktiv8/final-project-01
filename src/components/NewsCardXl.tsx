@@ -19,7 +19,7 @@ export default function NewsCardXl({ news }: NewsCardProps) {
     toggleNews(news);
   };
   return (
-    <Link href={`/${news.title}`}>
+    <Link href={`/news/${news.title}`}>
       <a
         onClick={() => {
           localStorage.setItem(

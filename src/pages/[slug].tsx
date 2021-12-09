@@ -1,94 +1,114 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import { useRouter } from "next/router";
-import { NextPage } from "next";
-import { News } from "@/types";
+import { Articles } from "@/types";
+import useHotNews from "@/lib/useHotNews";
 import useCategory from "@/lib/useCategory";
-import formatDate from "@/constants/formatDate";
-import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
+import newsAPI, { getNews } from "@/constants/newsAPI";
+import NewsCardLg from "@/components/NewsCardLg";
+import NewsCardXl from "@/components/NewsCardXl";
+import NewsCard2xl from "@/components/NewsCard2xl";
+import staticData from "@/data/indonesia.json";
 
-const NewsDetail: NextPage = () => {
-  const { category } = useCategory();
-  const router = useRouter();
-  const slug: any = router.query.slug;
-  const [news, setNews] = useState<News>();
+interface DetailProps {
+  msg?: string;
+  articles: Articles;
+  hotNews: {
+    latest: Articles;
+    popular: Articles;
+    relevant: Articles;
+  };
+}
+
+const Detail: NextPage<DetailProps> = ({ articles, hotNews, msg }) => {
+  const router = useRouter()
+  const { hotNewsDispatch } = useHotNews();
+  const { setCategory } = useCategory();
 
   useEffect(() => {
-    if (slug) {
-      const item: any = localStorage.getItem(
-        slug.split(" ").join("").toLowerCase()
-      );
-      setNews(JSON.parse(item));
-    }
-  }, [slug]);
+    if (msg) alert(msg);
+    const { latest, popular, relevant } = hotNews;
+    hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
+    hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
+    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+    setCategory(router.query.slug);
+  }, [router]);
+
   return (
     <>
-      <h5 className="my-5">
-        <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold inline-block">
-          {category || "general"}
-        </span>
-      </h5>
-      <h1 className="oswald font-bold text-3xl xs:text-5xl text-gray-900">
-        {news?.title}
-      </h1>
-      <p className="text-lg font-semibold text-gray-500 my-5">
-        {news?.description}
-      </p>
-      <div className="flex items-center space-x-3">
-        <div className="rounded-full h-16 w-16 border-2 bg-yellow-400"></div>
-        <div className="text-sm font-semibold text-gray-500">
-          <p>Published at {formatDate(news?.publishedAt)}</p>
-          <p>
-            By{" "}
-            <b className="text-gray-900 font-bold">
-              {news?.author || "Anonymous"}
-            </b>
-          </p>
-        </div>
-      </div>
-      <div className="h-[350px] sm:h-[492px] w-full my-5 relative">
-        {/* <Image
-          alt="random-pic"
-          layout="fill"
-          objectFit="cover"
-          src="https://mvpthemes.com/zoxnews/wp-content/uploads/2017/07/vr-headset.jpg"
-        /> */}
-        <img
-          src={news?.urlToImage || ""}
-          alt={news?.urlToImage || ""}
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="xs:flex space-x-3 my-5">
-        <div className="flex-1">
-          <div className="xs:sticky top-20">
-            <SocialMediaDetailNews />
+      <div className="flex flex-col-reverse sm:flex-row md:flex-col-reverse lg:flex-row sm:space-x-4 md:space-x-0 lg:space-x-6">
+        <div className="sm:w-1/3 md:w-auto lg:flex-1 relative mt-5 lg:mt-0">
+          <h5 className="flex justify-center absolute top-0 w-full">
+            <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold">
+              Indonesia
+            </span>
+          </h5>
+          <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
+            {articles.length > 1 &&
+              articles
+                .slice(1, 3)
+                .map((news, i) => <NewsCardLg key={i} news={news} />)}
           </div>
         </div>
-        <div className="flex-[9] mt-3 xs:mt-0">
-          <p className="text-gray-700 font-semibold text-lg whitespace-pre-wrap">
-            {news?.content + "\n\n" + paragraph}
-          </p>
+        <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
+          {articles.length && <NewsCard2xl news={articles[0]} />}
         </div>
+      </div>
+      <div className="mt-7 space-y-6">
+        {articles.length > 3 &&
+          articles
+            .slice(3)
+            .map((news, i) => <NewsCardXl key={i} news={news} />)}
       </div>
     </>
   );
 };
 
-export default NewsDetail;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = ["hiburan","kesehatan","politik","bisnis","koruptor","teknologi","seleb","agama"];
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const { slug } = context?.params;
+  const data = await Promise.all(categories.map((el) => getNews(newsAPI().everything({ q: el, language: "id" }))));
 
-//   const keyword = slug.split(" ").join("+");
+  const paths = data.map((el, i) => ({ params: { slug: categories[i] } }));
 
-//   console.log(newsAPI().everything({ q: keyword }));
+  return { paths, fallback: false };
+};
 
-//   const res = await fetch(newsAPI().everything({ q: keyword }));
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+  const slug: any = ctx.params?.slug;
+  const useStaticData = {
+    props: {
+      msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
+      articles: staticData.data,
+      hotNews: {
+        latest: staticData.latest,
+        popular: staticData.popular,
+        relevant: staticData.relevant,
+      },
+    },
+    revalidate: 86400, // 1 day
+  };
 
-//   const { articles } = await res.json();
+  try {
+    const data: any = await getNews(newsAPI().everything({ q: slug }));
+    const latest: any = await getNews(newsAPI().everything({ q: slug, sortBy: "publishedAt" }));
+    const popular: any = await getNews(newsAPI().everything({ q: slug, sortBy: "popularity" }));
+    const relevant: any = await getNews(newsAPI().everything({ q: slug, sortBy: "relevancy" }));
 
-//   return { props: { news: articles[0] } };
-// };
+    if (data.status === "error") return useStaticData;
 
-const paragraph =
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNeque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.\n\nAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.\n\nHeading 1\n\nQuis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.\n\nTemporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+    return {
+      props: {
+        articles: data?.articles || [],
+        hotNews: {
+          latest: latest?.articles || [],
+          popular: popular?.articles || [],
+          relevant: relevant?.articles || [],
+        },
+      },
+      revalidate: 86400, // 1 day
+    };
+  } catch (error) { return useStaticData }
+};
+
+export default Detail;

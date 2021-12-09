@@ -20,7 +20,7 @@ export default function NewsCard2xl({ news }: NewsCardProps) {
   };
 
   return (
-    <Link href={`/${news.title}`}>
+    <Link href={`/news/${news.title}`}>
       <a
         onClick={() => {
           localStorage.setItem(

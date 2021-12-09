@@ -25,8 +25,8 @@ export default function SideBar({ isSideBar, setSideBar }: SideBarProps) {
               key={i}
               className="text-gray-300 hover:text-white text-2xl lg:text-4xl uppercase"
             >
-              <Link href={nav.link}>
-                <a onClick={() => setSideBar(false)}>{nav.text}</a>
+              <Link href={"/"+nav}>
+                <a onClick={() => setSideBar(false)}>{nav}</a>
               </Link>
             </li>
           ))}
@@ -37,32 +37,12 @@ export default function SideBar({ isSideBar, setSideBar }: SideBarProps) {
 }
 
 const navs = [
-  {
-    text: "indonesia",
-    link: "/",
-  },
-  {
-    text: "programming",
-    link: "/programming",
-  },
-  {
-    text: "covid19",
-    link: "/covid19",
-  },
-  {
-    text: "entertainment",
-    link: "/entertainment",
-  },
-  {
-    text: "politics",
-    link: "/politics",
-  },
-  {
-    text: "tech",
-    link: "/tech",
-  },
-  {
-    text: "saved",
-    link: "/saved",
-  },
+  "entertainment",
+  "fashion",
+  "politik",
+  "bisnis",
+  "olah raga",
+  "teknologi",
+  "gaya hidup",
+  "agama",
 ];

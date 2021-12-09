@@ -24,9 +24,9 @@ export default function Navigation({ setSideBar }: { setSideBar: Function }) {
         <ul className="flex-[3] hidden lg:flex items-center justify-center space-x-6">
           {navs.map((nav, i) => (
             <li key={i}>
-              <Link href={nav.link}>
+              <Link href={"/"+nav}>
                 <a className="uppercase pt-3 pb-1 block text-gray-600 border-b-4 border-transparent hover:border-green-300 oswald">
-                  {nav.text}
+                  {nav}
                 </a>
               </Link>
             </li>
@@ -51,32 +51,12 @@ export default function Navigation({ setSideBar }: { setSideBar: Function }) {
 }
 
 const navs = [
-  {
-    text: "indonesia",
-    link: "/",
-  },
-  {
-    text: "programming",
-    link: "/programming",
-  },
-  {
-    text: "covid19",
-    link: "/covid19",
-  },
-  {
-    text: "entertainment",
-    link: "/entertainment",
-  },
-  {
-    text: "politics",
-    link: "/politics",
-  },
-  {
-    text: "tech",
-    link: "/tech",
-  },
-  {
-    text: "saved",
-    link: "/saved",
-  },
+  "hiburan",
+  "seleb",
+  "bisnis",
+  "politik",
+  "koruptor",
+  "kesehatan",
+  "agama",
+  "teknologi",
 ];

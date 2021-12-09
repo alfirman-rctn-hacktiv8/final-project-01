@@ -63,7 +63,7 @@ const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const getStaticData = {
+  const useStaticData = {
     props: {
       msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
       articles: staticData.data,
@@ -77,12 +77,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   try {
-    const data: any = await getNews(newsAPI().topHeadlines({ country: "id"}));
+    const data: any = await getNews(newsAPI().topHeadlines({ country: "id" }));
     const latest: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "publishedAt" }));
     const popular: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "popularity" }));
     const relevant: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "relevancy" }));
 
-    if (data.status === "error") return getStaticData;
+    if (data.status === "error") return useStaticData;
 
     return {
       props: {
@@ -95,9 +95,7 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 86400, // 1 day
     };
-  } catch (error) {
-    return getStaticData;
-  }
+  } catch (error) { return useStaticData }
 };
 
 export default Home;

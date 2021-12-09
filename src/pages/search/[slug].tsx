@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { GetServerSideProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import { Articles, News } from "@/types";
-import useCategory from "@/lib/useCategory";
 import useHotNews from "@/lib/useHotNews";
-import newsAPI from "@/constants/newsAPI";
+import useCategory from "@/lib/useCategory";
+import newsAPI, { getNews } from "@/constants/newsAPI";
 import NewsCardXl from "@/components/NewsCardXl";
 
 interface SearchProps {
@@ -20,7 +20,7 @@ interface SearchProps {
 const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
   const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
-  const slug: string | any = useRouter().query.slug;
+  const router = useRouter()
 
   useEffect(() => {
     if (msg) alert(msg);
@@ -28,8 +28,8 @@ const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
     hotNewsDispatch({ type: "SET_LATEST", payload: latest });
     hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
     hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    setCategory(slug);
-  }, []);
+    setCategory(router.query.slug);
+  }, [router]);
 
   return (
     <div className="mt-7 space-y-6">
@@ -46,47 +46,25 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const slug: string | any = ctx.params?.slug;
   const keyword = slug.split(" ").join("+").toLowerCase();
   try {
-    const resData = await fetch(
-      newsAPI().everything({ q: keyword, qInTitle: keyword })
-    );
-    const resLatest = await fetch(
-      newsAPI().everything({
-        q: keyword,
-        sortBy: "publishedAt",
-      })
-    );
-    const resPopular = await fetch(
-      newsAPI().everything({
-        q: keyword,
-        sortBy: "popularity",
-      })
-    );
-    const resRelevant = await fetch(
-      newsAPI().everything({
-        q: keyword,
-        sortBy: "relevancy",
-      })
-    );
+    const data: any = await getNews(newsAPI().everything({ q: keyword, qInTitle: keyword }))
+    const latest: any = await getNews(newsAPI().everything({ q: keyword, sortBy: "publishedAt" }))
+    const popular: any = await getNews(newsAPI().everything({ q: keyword, sortBy: "popularity" }))
+    const relevant: any = await getNews(newsAPI().everything({ q: keyword, sortBy: "relevancy" }))
 
-    const latest = await resLatest.json();
-    const popular = await resPopular.json();
-    const relevant = await resRelevant.json();
-    const data = await resData.json();
-
-    const props = {
-      articles: data?.articles || [],
-      hotNews: {
-        latest: latest?.articles || [],
-        popular: popular?.articles || [],
-        relevant: relevant?.articles || [],
-      },
+    return { 
+      props: {
+        articles: data?.articles || [],
+        hotNews: {
+          latest: latest?.articles || [],
+          popular: popular?.articles || [],
+          relevant: relevant?.articles || [],
+        },
+      } 
     };
-
-    return { props };
   } catch (error) {
     return {
       props: {
-        msg: "data not found",
+        msg: "data not found or API is expired",
         articles: [],
         hotNews: {
           latest: [],
@@ -94,6 +72,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           relevant: [],
         },
       },
-    }; // static data
+    };
   }
 };
