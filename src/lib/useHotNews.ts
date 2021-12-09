@@ -19,14 +19,10 @@ const initialState: InitialState = { latest: [], relevant: [], popular: [] };
 
 const reducer = (state: InitialState, action: any): InitialState => {
   switch (action.type) {
-    case "SET_LATEST":
-      return { ...state, latest: action.payload };
-    case "SET_RELEVANT":
-      return { ...state, relevant: action.payload };
-    case "SET_POPULAR":
-      return { ...state, popular: action.payload };
-    default:
-      return state;
+    case "SET_LATEST": return { ...state, latest: action.payload };
+    case "SET_RELEVANT": return { ...state, relevant: action.payload };
+    case "SET_POPULAR": return { ...state, popular: action.payload };
+    default: return state;
   }
 };
 
