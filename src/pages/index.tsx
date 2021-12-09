@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { GetStaticProps, NextPage } from "next";
 import { Articles } from "@/types";
 import useHotNews from "@/lib/useHotNews";
-import newsAPI from "@/constants/newsAPI";
+import newsAPI, { getNews } from "@/constants/newsAPI";
 import useCategory from "@/lib/useCategory";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
@@ -63,48 +63,26 @@ const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const getStaticData = {
+    props: {
+      msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
+      articles: staticData.data,
+      hotNews: {
+        latest: staticData.latest,
+        popular: staticData.popular,
+        relevant: staticData.relevant,
+      },
+    },
+    revalidate: 86400, // 1 day
+  };
+
   try {
-    const resData = await fetch(
-      newsAPI().topHeadlines({
-        country: "id",
-      })
-    );
-    const resLatest = await fetch(
-      newsAPI().everything({
-        q: "indonesia",
-        sortBy: "publishedAt",
-      })
-    );
-    const resPopular = await fetch(
-      newsAPI().everything({
-        q: "indonesia",
-        sortBy: "popularity",
-      })
-    );
-    const resRelevant = await fetch(
-      newsAPI().everything({
-        q: "indonesia",
-        sortBy: "relevancy",
-      })
-    );
+    const data: any = await getNews(newsAPI().topHeadlines({ country: "id"}));
+    const latest: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "publishedAt" }));
+    const popular: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "popularity" }));
+    const relevant: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "relevancy" }));
 
-    const latest = await resLatest.json();
-    const popular = await resPopular.json();
-    const relevant = await resRelevant.json();
-    const data = await resData.json();
-
-    if (data.status === "error")
-      return {
-        props: {
-          msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
-          articles: staticData.data,
-          hotNews: {
-            latest: staticData.latest,
-            popular: staticData.popular,
-            relevant: staticData.relevant,
-          },
-        },wrevalidate: 86400, // 1 day
-      };
+    if (data.status === "error") return getStaticData;
 
     return {
       props: {
@@ -118,18 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
       revalidate: 86400, // 1 day
     };
   } catch (error) {
-    return {
-      props: {
-        msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
-        articles: staticData.data,
-        hotNews: {
-          latest: staticData.latest,
-          popular: staticData.popular,
-          relevant: staticData.relevant,
-        },
-      },
-      revalidate: 86400, // 1 day
-    }; // static data
+    return getStaticData;
   }
 };
 

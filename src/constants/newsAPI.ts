@@ -61,6 +61,15 @@ const everything = (query: EverythingQueries): string => {
   return API_URL("everything", queryParam);
 };
 
-const newsAPI = () => { return {topHeadlines,everything,}; };
+const newsAPI = () => { return { topHeadlines , everything } };
 
 export default newsAPI;
+
+export const getNews = (API_URL:string) => {
+  return new Promise((resolve,reject)=>{
+    fetch(API_URL)
+    .then((res)=>res.json()
+    .then((data)=>resolve(data))
+    .catch((e)=>reject(e)))
+  })
+}
