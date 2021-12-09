@@ -37,12 +37,12 @@ export default function SideBar({ isSideBar, setSideBar }: SideBarProps) {
 }
 
 const navs = [
-  "entertainment",
-  "fashion",
-  "politik",
+  "hiburan",
+  "seleb",
   "bisnis",
-  "olah raga",
-  "teknologi",
-  "gaya hidup",
+  "politik",
+  "koruptor",
+  "kesehatan",
   "agama",
+  "teknologi",
 ];
