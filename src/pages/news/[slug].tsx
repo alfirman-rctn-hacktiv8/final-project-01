@@ -13,20 +13,12 @@ const NewsDetail: NextPage = () => {
   const slug: any = router.query.slug;
   const [news, setNews] = useState<News>();
 
-  const getLocalStorage = (slug: string) => {
-    const itemKey = slug.split(" ").join("").toLowerCase();
-    return new Promise((resolve) => {
+  useEffect(() => {
+    if(slug){
+      const itemKey = slug.split(" ").join("").toLowerCase();
       const item: any = localStorage.getItem(itemKey);
       setNews(JSON.parse(item));
-      resolve(true);
-    });
-  };
-
-  useEffect(() => {
-    const setLocalStorage = () => {
-      getLocalStorage(slug).then(() => localStorage.clear());
-    };
-    if (slug) setLocalStorage();
+    }
   }, [slug]);
 
   return (
