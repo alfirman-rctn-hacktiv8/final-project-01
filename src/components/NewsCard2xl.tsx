@@ -39,7 +39,7 @@ export default function NewsCard2xl({ news }: NewsCardProps) {
       /> */}
         <img
           src={news?.urlToImage || ""}
-          alt={news?.urlToImage.slice(0, 30)}
+          alt={news?.urlToImage?.slice(0, 30) || ""}
           className="h-full w-full object-cover group-hover:opacity-80 duration-300"
         />
         <button
