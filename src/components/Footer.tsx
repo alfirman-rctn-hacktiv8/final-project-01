@@ -31,11 +31,18 @@ export default function Footer() {
       </div>
       <nav className="mb-10">
         <ul className="flex justify-center items-center flex-wrap space-x-3 xs:space-x-5 px-3">
+          <li>
+            <Link href={"/"}>
+              <a className="uppercase font-thin tracking-wider text-xs sm:text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
+                home
+              </a>
+            </Link>
+          </li>
           {navs.map((nav, i) => (
             <li key={i}>
-              <Link href={nav.link}>
+              <Link href={"/" + nav}>
                 <a className="uppercase font-thin tracking-wider text-xs sm:text-sm pt-3 pb-1 block text-gray-500 border-b-4 border-transparent hover:text-white duration-300 oswald">
-                  {nav.text}
+                  {nav}
                 </a>
               </Link>
             </li>
@@ -101,32 +108,12 @@ const socialMedias = [
 ];
 
 const navs = [
-  {
-    text: "indonesia",
-    link: "/",
-  },
-  {
-    text: "programming",
-    link: "/programming",
-  },
-  {
-    text: "covid19",
-    link: "/covid19",
-  },
-  {
-    text: "entertainment",
-    link: "/entertainment",
-  },
-  {
-    text: "politics",
-    link: "/politics",
-  },
-  {
-    text: "tech",
-    link: "/tech",
-  },
-  {
-    text: "saved",
-    link: "/saved",
-  },
+  "hiburan",
+  "seleb",
+  "bisnis",
+  "politik",
+  "koruptor",
+  "kesehatan",
+  "agama",
+  "teknologi",
 ];
