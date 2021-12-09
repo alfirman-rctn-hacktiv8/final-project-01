@@ -10,7 +10,7 @@ import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
 import staticData from "@/data/indonesia.json";
 
-interface DetailProps {
+interface CategoryProps {
   msg?: string;
   articles: Articles;
   hotNews: {
@@ -20,7 +20,7 @@ interface DetailProps {
   };
 }
 
-const Detail: NextPage<DetailProps> = ({ articles, hotNews, msg }) => {
+const Category: NextPage<CategoryProps> = ({ articles, hotNews, msg }) => {
   const router = useRouter()
   const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
@@ -111,4 +111,4 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
   } catch (error) { return useStaticData }
 };
 
-export default Detail;
+export default Category;
