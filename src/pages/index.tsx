@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 import { Articles } from "@/types";
 import useHotNews from "@/lib/useHotNews";
@@ -7,28 +7,55 @@ import useCategory from "@/lib/useCategory";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import staticData from "@/data/indonesia.json";
+import formatDate from "@/constants/formatDate";
 
 interface HomeProps {
-  msg?: string;
-  articles: Articles;
-  hotNews: {
+  data: {
+    articles: Articles;
     latest: Articles;
     popular: Articles;
     relevant: Articles;
   };
+  error: boolean;
 }
 
-const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
+const Home: NextPage<HomeProps> = ({ data, error }) => {
+  const [datas, setDatas] = useState<Articles>([]);
   const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
 
+  const setToLocalStorage = () => {
+    const { articles, latest, relevant, popular } = data;
+    const event = new Date(Date.now());
+    const date = event.toISOString();
+    const result = { date, articles, latest, relevant, popular };
+    localStorage.setItem("indonesia", JSON.stringify(result));
+  };
+
+  const getDataFromLocalStorage = () => {
+    const data: any = localStorage.getItem("indonesia");
+    const parsed = JSON.parse(data);
+    const { date, articles, latest, relevant, popular } = parsed;
+    const msg = `API's not working on deployment or API request has reached the limit\nNow you're using static data on ${formatDate(date)}`;
+    return { msg, articles, latest, relevant, popular };
+  };
+
   useEffect(() => {
-    if (msg) alert(msg);
-    const { latest, popular, relevant } = hotNews;
-    hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
-    hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+    if (!error) {
+      const { articles, latest, popular, relevant } = data;
+      setDatas(articles);
+      hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
+      hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
+      hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+      setToLocalStorage();
+    } else {
+      const { articles, relevant, msg,popular,latest } = getDataFromLocalStorage();
+      alert(msg);
+      setDatas(articles);
+      hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
+      hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
+      hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+    }
     setCategory("Indonesia");
   }, []);
 
@@ -42,21 +69,19 @@ const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
             </span>
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
-            {articles.length > 1 &&
-              articles
+            {datas.length > 1 &&
+              datas
                 .slice(1, 3)
                 .map((news, i) => <NewsCardLg key={i} news={news} />)}
           </div>
         </div>
         <div className="sm:w-2/3 md:w-auto lg:flex-[2]">
-          {articles.length && <NewsCard2xl news={articles[0]} />}
+          {datas.length && <NewsCard2xl news={datas[0]} />}
         </div>
       </div>
       <div className="mt-7 space-y-6">
-        {articles.length > 3 &&
-          articles
-            .slice(3)
-            .map((news, i) => <NewsCardXl key={i} news={news} />)}
+        {datas.length > 3 &&
+          datas.slice(3).map((news, i) => <NewsCardXl key={i} news={news} />)}
       </div>
     </>
   );
@@ -65,13 +90,13 @@ const Home: NextPage<HomeProps> = ({ articles, hotNews, msg }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const useStaticData = {
     props: {
-      msg: "error, API's not working on deployment or APi request has reached the limit\nNow you're using static data at november 14 2021",
-      articles: staticData.data,
-      hotNews: {
-        latest: staticData.latest,
-        popular: staticData.popular,
-        relevant: staticData.relevant,
+      data: {
+        articles: [],
+        latest: [],
+        popular: [],
+        relevant: [],
       },
+      error: true,
     },
     revalidate: 86400, // 1 day
   };
@@ -86,8 +111,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
       props: {
-        articles: data?.articles || [],
-        hotNews: {
+        data: {
+          articles: data?.articles || [],
           latest: latest?.articles || [],
           popular: popular?.articles || [],
           relevant: relevant?.articles || [],
@@ -95,7 +120,9 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 86400, // 1 day
     };
-  } catch (error) { return useStaticData }
+  } catch (error) {
+    return useStaticData;
+  }
 };
 
 export default Home;

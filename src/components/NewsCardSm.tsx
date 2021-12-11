@@ -18,17 +18,21 @@ export default function NewsCardSm({ news }: NewsCardProps) {
     e.preventDefault();
     toggleNews(news);
   };
+
+  const setToLocalStorage = () => {
+    let detail: any = {};
+    const key = news.title.split(" ").join("").toLocaleLowerCase();
+    const obj: any = localStorage.getItem("detail");
+    const parsed = JSON.parse(obj);
+    if (parsed) detail = { ...parsed };
+    detail[key] = news;
+    console.log(detail);
+    localStorage.setItem("detail", JSON.stringify(detail));
+  };
+
   return (
     <Link href={`/news/${news.title}`}>
-      <a
-        onClick={() => {
-          localStorage.setItem(
-            news.title.split(" ").join("").toLocaleLowerCase(),
-            JSON.stringify(news)
-          );
-        }}
-        className="flex space-x-3 group"
-      >
+      <a onClick={setToLocalStorage} className="flex space-x-3 group">
         <div className="h-24 w-24 relative bg-black overflow-hidden">
           {/* <Image
           alt="random-pic"

@@ -19,15 +19,21 @@ export default function NewsCard2xl({ news }: NewsCardProps) {
     toggleNews(news);
   };
 
+  const setToLocalStorage = () => {
+    let detail: any = {};
+    const key = news.title.split(" ").join("").toLocaleLowerCase();
+    const obj: any = localStorage.getItem("detail");
+    const parsed = JSON.parse(obj);
+    if (parsed) detail = { ...parsed };
+    detail[key] = news;
+    console.log(detail)
+    localStorage.setItem("detail", JSON.stringify(detail));
+  };
+
   return (
     <Link href={`/news/${news.title}`}>
       <a
-        onClick={() => {
-          localStorage.setItem(
-            news.title.split(" ").join("").toLocaleLowerCase(),
-            JSON.stringify(news)
-          );
-        }}
+        onClick={setToLocalStorage}
         className="h-[480px] xs:h-[600px] relative block group bg-black"
       >
         {/* <Image

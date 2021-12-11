@@ -18,17 +18,20 @@ export default function NewsCardLg({ news }: NewsCardProps) {
     e.preventDefault();
     toggleNews(news);
   };
+
+  const setToLocalStorage = () => {
+    let detail: any = {};
+    const key = news.title.split(" ").join("").toLocaleLowerCase();
+    const obj: any = localStorage.getItem("detail");
+    const parsed = JSON.parse(obj);
+    if (parsed) detail = { ...parsed };
+    detail[key] = news;
+    localStorage.setItem("detail", JSON.stringify(detail));
+  };
+  
   return (
     <Link href={`/news/${news.title}`}>
-      <a
-        onClick={() => {
-          localStorage.setItem(
-            news.title.split(" ").join("").toLocaleLowerCase(),
-            JSON.stringify(news)
-          );
-        }}
-        className="group block w-full"
-      >
+      <a onClick={setToLocalStorage} className="group block w-full">
         <div className="relative bg-black h-[120px] xs:h-[155px] overflow-hidden">
           {/* <Image
           alt="random-pic"
