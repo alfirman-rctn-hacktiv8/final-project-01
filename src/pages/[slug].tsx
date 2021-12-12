@@ -21,11 +21,11 @@ interface CategoryProps {
 }
 
 const Category: NextPage<CategoryProps> = ({ error, data }) => {
-  const [datas, setDatas] = useState<Articles>([]);
   const router: any = useRouter();
-  const { hotNewsDispatch } = useHotNews();
-  const { setCategory } = useCategory();
+  const [datas, setDatas] = useState<Articles>([]);
   const { getDataFromLocalStorage, setToLocalStorage } = useStaticData()
+  const { setCategory, category } = useCategory();
+  const { hotNewsDispatch } = useHotNews();
 
   useEffect(() => {
     let result:any = {};
@@ -47,7 +47,7 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
         <div className="sm:w-1/3 md:w-auto lg:flex-1 relative mt-5 lg:mt-0">
           <h5 className="flex justify-center absolute top-0 w-full">
             <span className="oswald uppercase text-lg px-3 bg-[#FF005B] text-white skew-x-[-15deg] font-extrabold">
-              Indonesia
+              {category}
             </span>
           </h5>
           <div className="flex sm:flex-col md:flex-row lg:flex-col border-t border-black mt-3 pt-7 space-x-2 sm:space-x-0 sm:space-y-6 md:space-y-0 lg:space-y-7 md:space-x-5 lg:space-x-0">
