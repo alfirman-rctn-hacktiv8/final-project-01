@@ -46,18 +46,14 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
     if (!error) {
       const { articles, latest, popular, relevant } = data;
       setDatas(articles);
-      hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
-      hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-      hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
       setToLocalStorage();
     } else {
       const { articles, relevant, msg, popular, latest } =
-        getDataFromLocalStorage();
+      getDataFromLocalStorage();
       alert(msg);
       setDatas(articles);
-      hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
-      hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-      hotNewsDispatch({ type: "SET_LATEST", payload: latest });
+      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
     }
     setCategory(router.query.slug);
   }, [router]);

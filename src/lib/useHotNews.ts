@@ -18,12 +18,11 @@ interface HotNews {
 const initialState: InitialState = { latest: [], relevant: [], popular: [] };
 
 const reducer = (state: InitialState, action: any): InitialState => {
-  switch (action.type) {
-    case "SET_LATEST": return { ...state, latest: action.payload };
-    case "SET_RELEVANT": return { ...state, relevant: action.payload };
-    case "SET_POPULAR": return { ...state, popular: action.payload };
-    default: return state;
+  if (action.type === "SET_HOTNEWS") {
+    const { relevant, latest, popular } = action.payload;
+    return { relevant, latest, popular };
   }
+  return state;
 };
 
 export const useHotNewsReducer = () => {
