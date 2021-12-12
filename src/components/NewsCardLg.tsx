@@ -21,7 +21,7 @@ export default function NewsCardLg({ news }: NewsCardProps) {
 
   const setToLocalStorage = () => {
     let detail: any = {};
-    const key = news.title.split(" ").join("").toLocaleLowerCase();
+    const key = news.title.replace(/\W+/g, "")
     const obj: any = localStorage.getItem("detail");
     const parsed = JSON.parse(obj);
     if (parsed) detail = { ...parsed };
@@ -30,7 +30,7 @@ export default function NewsCardLg({ news }: NewsCardProps) {
   };
   
   return (
-    <Link href={`/news/${news.title}`}>
+    <Link href={`/news/${encodeURIComponent(news.title)}`}>
       <a onClick={setToLocalStorage} className="group block w-full">
         <div className="relative bg-black h-[120px] xs:h-[155px] overflow-hidden">
           {/* <Image

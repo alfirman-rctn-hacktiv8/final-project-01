@@ -15,7 +15,7 @@ const NewsDetail: NextPage = () => {
   useEffect((): any => {
     if (router.query.slug) {
       const slug: any = router.query.slug;
-      const itemKey = slug.split(" ").join("").toLowerCase();
+      const itemKey = decodeURIComponent(slug).replace(/\W+/g, "")
       const item: any = localStorage.getItem("detail");
       const obj = JSON.parse(item)
       setNews(obj[itemKey]);
