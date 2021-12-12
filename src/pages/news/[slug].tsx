@@ -8,8 +8,8 @@ import formatDate from "@/config/formatDate";
 import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
 
 const NewsDetail: NextPage = () => {
-  const { category } = useCategory();
   const router = useRouter();
+  const { category } = useCategory();
   const [news, setNews] = useState<News>();
 
   useEffect((): any => {

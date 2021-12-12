@@ -1,5 +1,5 @@
 import formatDate from "@/config/formatDate";
-import { Articles } from "@/types";
+import { Articles, News } from "@/types";
 import { useRouter } from "next/router";
 
 interface Data {
@@ -30,5 +30,15 @@ export default function useStaticData() {
     return { msg, articles, latest, relevant, popular };
   };
 
-  return { setToLocalStorage, getDataFromLocalStorage }
+  const setDetailToLocalStorage = (news:News) => {
+    let detail: any = {};
+    const key = news.title.replace(/\W+/g, "")
+    const obj: any = localStorage.getItem("detail");
+    const parsed = JSON.parse(obj);
+    if (parsed) detail = { ...parsed };
+    detail[key] = news;
+    localStorage.setItem("detail", JSON.stringify(detail));
+  };
+
+  return { setToLocalStorage, getDataFromLocalStorage, setDetailToLocalStorage}
 }

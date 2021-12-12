@@ -1,9 +1,10 @@
 import { MouseEvent } from "react";
 import Link from "next/link";
 import { News } from "@/types";
+import formatDate from "@/config/formatDate";
 import useCategory from "@/lib/useCategory";
 import useSavedNews from "@/lib/useSavedNews";
-import formatDate from "@/config/formatDate";
+import useStaticData from "@/lib/useStaticData";
 import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {
@@ -11,6 +12,7 @@ interface NewsCardProps {
 }
 
 export default function NewsCardSm({ news }: NewsCardProps) {
+  const { setDetailToLocalStorage } = useStaticData()
   const { toggleNews, isSaved } = useSavedNews();
   const { category } = useCategory();
 
@@ -19,20 +21,9 @@ export default function NewsCardSm({ news }: NewsCardProps) {
     toggleNews(news);
   };
 
-  const setToLocalStorage = () => {
-    let detail: any = {};
-    const key = news.title.replace(/\W+/g, "")
-    const obj: any = localStorage.getItem("detail");
-    const parsed = JSON.parse(obj);
-    if (parsed) detail = { ...parsed };
-    detail[key] = news;
-    console.log(detail);
-    localStorage.setItem("detail", JSON.stringify(detail));
-  };
-
   return (
     <Link href={`/news/${encodeURIComponent(news.title)}`}>
-      <a onClick={setToLocalStorage} className="flex space-x-3 group">
+      <a onClick={()=> setDetailToLocalStorage(news)} className="flex space-x-3 group">
         <div className="h-24 w-24 relative bg-black overflow-hidden">
           {/* <Image
           alt="random-pic"
