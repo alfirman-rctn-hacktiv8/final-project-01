@@ -22,9 +22,17 @@ export default function useStaticData() {
   };
 
   const getDataFromLocalStorage = () => {
+    const errorData = {
+      msg: "data not found",
+      articles:[],
+      latest:[],
+      relevant:[],
+      popular:[],
+    }
     const key = router.query?.slug || "Indonesia"
     const data: any = localStorage.getItem(key);
     const parsed = JSON.parse(data);
+    if(!parsed) return errorData
     const { date, articles, latest, relevant, popular } = parsed;
     const msg = `API's not working on deployment or API request has reached the limit\nNow you're using static data on ${formatDate(date)}`;
     return { msg, articles, latest, relevant, popular };

@@ -28,16 +28,15 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
   const { getDataFromLocalStorage, setToLocalStorage } = useStaticData()
 
   useEffect(() => {
-    if (!error) {
-      const { articles, latest, popular, relevant } = data;
-      setDatas(articles);
-      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
-      setToLocalStorage(data);
-    } else {
-      const { articles, relevant, msg, popular, latest } = getDataFromLocalStorage();
-      alert(msg);
-      setDatas(articles);
-      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
+    let result:any = {};
+    !error ? result = data : result = getDataFromLocalStorage()
+
+    if(Object.values(result).length){
+      const { articles, relevant, msg, popular,latest } = result
+      if(msg) alert(msg) // static data
+      else setToLocalStorage(data); // api data
+      setDatas(articles)
+      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } })
     }
     setCategory(router.query.slug);
   }, [router]);
