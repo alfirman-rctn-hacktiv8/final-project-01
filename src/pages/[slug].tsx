@@ -93,9 +93,7 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const categories = ["hiburan","kesehatan","politik","bisnis","koruptor","teknologi","seleb","agama"];
 
-  const data = await Promise.all(categories.map((el) => getNews(newsAPI().everything({ q: el, language: "id" }))));
-
-  const paths = data.map((el, i) => ({ params: { slug: categories[i] } }));
+  const paths = categories.map((el, i) => ({ params: { slug: el } }));
 
   return { paths, fallback: false };
 };
