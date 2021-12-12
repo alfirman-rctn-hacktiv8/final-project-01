@@ -21,11 +21,12 @@ interface EverythingQueries {
   page?: number;
 }
 
+const protocol: string = "https"
 const baseURL: string = "newsapi.org";
 const version: string = "v2";
 
 const API_URL = (payload: string, queryParam: string): string =>{
-  const apiUrl:string=`https://${baseURL}/${version}/${payload}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}${queryParam}`;
+  const apiUrl:string=`${protocol}://${baseURL}/${version}/${payload}?apiKey=${process.env.NEXT_PUBLIC_API_KEY}${queryParam}`;
   // console.log(apiUrl);
   return apiUrl
 }

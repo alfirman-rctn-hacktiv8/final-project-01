@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 import { Articles } from "@/types";
 import useHotNews from "@/lib/useHotNews";
-import newsAPI, { getNews } from "@/constants/newsAPI";
 import useCategory from "@/lib/useCategory";
+import useStaticData from "@/lib/useStaticData";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import formatDate from "@/constants/formatDate";
-import useStaticData from "@/lib/useStaticData";
+import newsAPI, { getNews } from "@/config/newsAPI";
 
 interface HomeProps {
   data: {
@@ -22,10 +21,9 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ data, error }) => {
   const [datas, setDatas] = useState<Articles>([]);
-  const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
+  const { hotNewsDispatch } = useHotNews();
   const { getDataFromLocalStorage, setToLocalStorage } = useStaticData()
-
 
   useEffect(() => {
     if (!error) {
@@ -71,7 +69,7 @@ const Home: NextPage<HomeProps> = ({ data, error }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const useStaticData = {
+  const errorData = {
     props: {
       data: {
         articles: [],
@@ -90,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const popular: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "popularity" }));
     const relevant: any = await getNews(newsAPI().everything({ q: "indonesia", sortBy: "relevancy" }));
 
-    if (data.status === "error") return useStaticData;
+    if (data.status === "error") return errorData;
 
     return {
       props: {
@@ -104,7 +102,7 @@ export const getStaticProps: GetStaticProps = async () => {
       revalidate: 86400, // 1 day
     };
   } catch (error) {
-    return useStaticData;
+    return errorData;
   }
 };
 

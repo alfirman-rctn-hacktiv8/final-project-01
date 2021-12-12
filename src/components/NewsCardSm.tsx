@@ -3,7 +3,7 @@ import Link from "next/link";
 import { News } from "@/types";
 import useCategory from "@/lib/useCategory";
 import useSavedNews from "@/lib/useSavedNews";
-import formatDate from "@/constants/formatDate";
+import formatDate from "@/config/formatDate";
 import { BookmarkIcon } from "./icon";
 
 interface NewsCardProps {

@@ -1,4 +1,4 @@
-import formatDate from "@/constants/formatDate";
+import formatDate from "@/config/formatDate";
 import { Articles } from "@/types";
 import { useRouter } from "next/router";
 

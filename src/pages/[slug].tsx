@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { Articles } from "@/types";
 import useHotNews from "@/lib/useHotNews";
 import useCategory from "@/lib/useCategory";
-import newsAPI, { getNews } from "@/constants/newsAPI";
+import useStaticData from "@/lib/useStaticData";
 import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
-import useStaticData from "@/lib/useStaticData";
+import newsAPI, { getNews } from "@/config/newsAPI";
 
 interface CategoryProps {
   error?: boolean;
@@ -34,8 +34,7 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
       hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
       setToLocalStorage(data);
     } else {
-      const { articles, relevant, msg, popular, latest } =
-      getDataFromLocalStorage();
+      const { articles, relevant, msg, popular, latest } = getDataFromLocalStorage();
       alert(msg);
       setDatas(articles);
       hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
@@ -74,16 +73,14 @@ const Category: NextPage<CategoryProps> = ({ error, data }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const categories = ["hiburan","kesehatan","politik","bisnis","koruptor","teknologi","seleb","agama"];
 
-  const paths = categories.map((el, i) => ({ params: { slug: el } }));
+  const paths = categories.map((category) => ({ params: { slug: category } }));
 
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async (
-  ctx: GetStaticPropsContext
-) => {
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
   const slug: any = ctx.params?.slug;
-  const useStaticData = {
+  const errorData = {
     props: {
       error: true,
       data: {
@@ -102,7 +99,7 @@ export const getStaticProps: GetStaticProps = async (
     const popular: any = await getNews(newsAPI().everything({ q: slug, sortBy: "popularity" }));
     const relevant: any = await getNews(newsAPI().everything({ q: slug, sortBy: "relevancy" }));
 
-    if (data.status === "error") return useStaticData;
+    if (data.status === "error") return errorData;
 
     return {
       props: {
@@ -116,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (
       revalidate: 86400, // 1 day
     };
   } catch (error) {
-    return useStaticData;
+    return errorData;
   }
 };
 

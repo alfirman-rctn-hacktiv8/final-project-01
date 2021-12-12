@@ -4,36 +4,35 @@ import { useRouter } from "next/router";
 import { Articles, News } from "@/types";
 import useHotNews from "@/lib/useHotNews";
 import useCategory from "@/lib/useCategory";
-import newsAPI, { getNews } from "@/constants/newsAPI";
 import NewsCardXl from "@/components/NewsCardXl";
+import newsAPI, { getNews } from "@/config/newsAPI";
 
 interface SearchProps {
-  msg: string;
-  articles: Articles;
-  hotNews: {
+  error?: boolean;
+  data: {
+    articles: Articles;
     latest: Articles;
     popular: Articles;
     relevant: Articles;
-  };
+  }
 }
 
-const Search: NextPage<SearchProps> = ({ articles, hotNews, msg }) => {
+const Search: NextPage<SearchProps> = ({ data, error }) => {
   const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
   const router = useRouter()
 
   useEffect(() => {
-    if (msg) alert(msg);
-    const { latest, popular, relevant } = hotNews;
-    hotNewsDispatch({ type: "SET_LATEST", payload: latest });
-    hotNewsDispatch({ type: "SET_RELEVANT", payload: relevant });
-    hotNewsDispatch({ type: "SET_POPULAR", payload: popular });
-    setCategory(router.query.slug);
+    if (!error) {
+      const { latest, popular, relevant } = data;
+      hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
+      setCategory(router.query.slug);
+    }
   }, [router]);
 
   return (
     <div className="mt-7 space-y-6">
-      {articles.map((news: News, i: number) => (
+      {data.articles.map((news: News, i: number) => (
         <NewsCardXl key={i} news={news} />
       ))}
     </div>
@@ -53,24 +52,24 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return { 
       props: {
-        articles: data?.articles || [],
-        hotNews: {
+        data: {
+          articles: data?.articles || [],
           latest: latest?.articles || [],
           popular: popular?.articles || [],
           relevant: relevant?.articles || [],
-        },
+        }
       } 
     };
   } catch (error) {
     return {
       props: {
-        msg: "data not found or API is expired",
-        articles: [],
-        hotNews: {
+        error:true,
+        data: {
+          articles: [],
           latest: [],
           popular: [],
           relevant: [],
-        },
+        }
       },
     };
   }

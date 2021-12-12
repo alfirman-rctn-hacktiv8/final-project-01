@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { News } from "@/types";
 import useCategory from "@/lib/useCategory";
-import formatDate from "@/constants/formatDate";
+import formatDate from "@/config/formatDate";
 import SocialMediaDetailNews from "@/components/SocialMediaDetailNews";
 
 const NewsDetail: NextPage = () => {
