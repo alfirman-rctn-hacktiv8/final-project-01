@@ -8,6 +8,7 @@ import NewsCardLg from "@/components/NewsCardLg";
 import NewsCardXl from "@/components/NewsCardXl";
 import NewsCard2xl from "@/components/NewsCard2xl";
 import formatDate from "@/constants/formatDate";
+import useStaticData from "@/lib/useStaticData";
 
 interface HomeProps {
   data: {
@@ -23,29 +24,15 @@ const Home: NextPage<HomeProps> = ({ data, error }) => {
   const [datas, setDatas] = useState<Articles>([]);
   const { hotNewsDispatch } = useHotNews();
   const { setCategory } = useCategory();
+  const { getDataFromLocalStorage, setToLocalStorage } = useStaticData()
 
-  const setToLocalStorage = () => {
-    const { articles, latest, relevant, popular } = data;
-    const event = new Date(Date.now());
-    const date = event.toISOString();
-    const result = { date, articles, latest, relevant, popular };
-    localStorage.setItem("indonesia", JSON.stringify(result));
-  };
-
-  const getDataFromLocalStorage = () => {
-    const data: any = localStorage.getItem("indonesia");
-    const parsed = JSON.parse(data);
-    const { date, articles, latest, relevant, popular } = parsed;
-    const msg = `API's not working on deployment or API request has reached the limit\nNow you're using static data on ${formatDate(date)}`;
-    return { msg, articles, latest, relevant, popular };
-  };
 
   useEffect(() => {
     if (!error) {
       const { articles, latest, popular, relevant } = data;
       setDatas(articles);
       hotNewsDispatch({ type: "SET_HOTNEWS", payload: { latest, popular, relevant } });
-      setToLocalStorage();
+      setToLocalStorage(data);
     } else {
       const { articles, relevant, msg, popular,latest } = getDataFromLocalStorage();
       alert(msg);
